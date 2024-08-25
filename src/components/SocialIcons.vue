@@ -1,28 +1,86 @@
 <template>
-    <div class="fixed left-4 bottom-0 flex flex-col items-center z-50">
-      <div class="flex flex-col items-center mb-4">
-        <a href="https://github.com/Meera27" class="mb-4 text-white hover:text-gray-300"><i class="fab fa-github text-2xl"></i></a>
-        <a href="https://www.linkedin.com/in/meeramnair99/" class="mb-4 text-white hover:text-gray-300"><i class="fab fa-linkedin text-2xl"></i></a>
-        <a href="https://www.facebook.com/meera.nair.71/" class="mb-4 text-white hover:text-gray-300"><i class="fab fa-facebook text-2xl"></i></a>
-        <a href="https://www.instagram.com/meeramnair._/" class="mb-4 text-white hover:text-gray-300"><i class="fab fa-instagram text-2xl"></i></a>
-      </div>
-      <div class="w-px h-24 bg-white"></div>
+  <div class="social-icons-container">
+    <div class="social-icons">
+      <a href="https://github.com/Meera27" class="social-icon"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/meeramnair99/" class="social-icon"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.facebook.com/meera.nair.71/" class="social-icon"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/meeramnair._/" class="social-icon"><i class="fab fa-instagram"></i></a>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'SocialIcons'
+    <div class="vertical-line"></div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'SocialIcons'
+}
+</script>
+
+<style scoped>
+.social-icons-container {
+  position: fixed;
+  left: 1rem;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 50;
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.social-icon {
+  margin-bottom: 1rem;
+  color: white;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #00FFFF;
+  transform: translateY(-3px);
+}
+
+.fab {
+  font-size: 1.5rem;
+}
+
+.vertical-line {
+  width: 1px;
+  height: 6rem;
+  background-color: white;
+}
+
+@media (max-width: 768px) {
+  .social-icons-container {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgba(31, 34, 38, 0.9);
+    padding: 0.5rem 0;
   }
-  </script>
-  
-  <style scoped>
+
+  .social-icons {
+    flex-direction: row;
+    margin-bottom: 0;
+  }
+
+  .social-icon {
+    margin: 0 0.5rem;
+  }
+
+  .vertical-line {
+    display: none;
+  }
+
   .fab {
-    transition: transform 0.3s ease;
+    font-size: 1.25rem;
   }
-  
-  a:hover .fab {
-    transform: translateY(-3px);
-  }
-  </style>
-  
+}
+</style>
