@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#262A2E] text-white py-16">
+  <div class="bg-[#1F2226] text-white py-16">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold mb-12 text-center">My Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
