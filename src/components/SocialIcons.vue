@@ -55,7 +55,7 @@ export default {
   background-color: white;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 825px) {
   .social-icons-container {
     position: static;
     flex-direction: row;

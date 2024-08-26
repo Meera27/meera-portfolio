@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#1E2024] text-white py-16">
+    <div class="bg-[#262A2E] text-white py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold mb-12 text-center">My Journey</h2>
         <div class="relative">

@@ -4,7 +4,8 @@
     <home-component/>
     <about-component />
     <ProjectsComponent />
-    <experience-component/>    
+    <experience-component/> 
+    <FooterComponent />   
     <SocialIcons/>
   </div>
 </template>
@@ -13,6 +14,7 @@
 // import AboutComponent from './components/AboutComponent.vue';
 import AboutComponent from './components/AboutComponent.vue';
 import ExperienceComponent from './components/ExperienceComponent.vue';
+import FooterComponent from './components/FooterComponent.vue';
 import HomeComponent from './components/HomeComponent.vue';
 import NavBarComponent from './components/NavBarComponent.vue';
 import ProjectsComponent from './components/ProjectsComponent.vue';
@@ -26,6 +28,7 @@ export default {
     AboutComponent,
     ProjectsComponent,
     ExperienceComponent,
+    FooterComponent,
     SocialIcons
   },
 };

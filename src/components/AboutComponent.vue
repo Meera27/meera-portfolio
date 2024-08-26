@@ -1,5 +1,5 @@
 <template>
-    <div id="about" class="about-me-container bg-[#1F2226] text-white flex items-center justify-center -mt-24">
+    <div id="about" class="about-me-container bg-[#262A2E] text-white flex items-center justify-center -mt-24">
       <div class="flex w-full max-w-4xl">
         <div class="content-wrapper w-full flex">
           <div class="vertical-text-container flex items-center mr-4">
@@ -57,8 +57,6 @@
 }
 
   
-  .content-container {
-    padding-left: 1rem;
-  }
+
   </style>
   

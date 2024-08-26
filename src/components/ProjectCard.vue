@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#1F2226] rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 border border-gray-700 w-full max-w-sm relative group">
+  <div class="bg-[#262A2E] rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 border border-gray-700 w-full max-w-sm relative group">
     <img :src="projectImage" :alt="project.name" class="w-full h-48 object-cover">
     <div class="p-4">
       <h3 class="text-lg font-semibold mb-2 text-center">{{ project.name }}</h3>
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div 
-      class="absolute inset-0 bg-[#1F2226] bg-opacity-95 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+      class="absolute inset-0 bg-[#262A2E] bg-opacity-95 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
     >
       <p class="text-white text-center p-4 mb-4 whitespace-pre-line">
         {{ project.explanation }}
