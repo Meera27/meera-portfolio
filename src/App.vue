@@ -1,13 +1,26 @@
 <template>
+
   <div id="app">
     <NavBarComponent />
-    <home-component/>
-    <about-component />
-    <ProjectsComponent />
+    
+    <section id="home">
+      <home-component/>
+    </section>
+    
+    <section id="about">
+      <about-component />
+    </section>
+    
+    <section id="projects">
+      <ProjectsComponent />
+    </section>
     <experience-component/> 
     <FooterComponent />   
     <SocialIcons/>
+    
+    <!-- Any other sections or components -->
   </div>
+
 </template>
 
 <script>
