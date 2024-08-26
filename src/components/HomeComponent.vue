@@ -6,7 +6,8 @@
         <div class="text-center">
           <h1 class="text-3xl md:text-4xl font-bold mb-2">Hi, I'm <span style="color: #00FFFF;">Meera</span></h1>
           <p class="text-lg md:text-xl text-gray-400 mb-4">Software Developer</p>
-          <p class="text-base md:text-lg italic">"Your favorite quote here"</p>
+          <p class="text-base md:text-lg italic mb-6">"In the grand scheme of things, remember to always keep your code clean and your coffee strong. Success is just a semicolon away!"</p>
+          <a href="https://drive.google.com/file/d/1LNBpSIHx_h-nzijaHZTiRPJsCoU6fo4Q/view?usp=sharing" target = "_blank" class="resume-link text-lg">Resume</a>
         </div>
       </div>
 
@@ -100,4 +101,25 @@ body {
   visibility: visible;
 }
 
+.resume-link {
+  text-decoration: none;
+  color: white;
+  position: relative;
+}
+
+.resume-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #39FF14;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.resume-link:hover::after {
+  transform: scaleX(1);
+}
 </style>

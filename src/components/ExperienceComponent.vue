@@ -15,7 +15,7 @@
               <div class="mb-4 text-sm">{{ item.period }}</div>
               
               <!-- Glowing dot -->
-              <div :class="`w-4 h-4 rounded-full ${item.type === 'education' ? 'bg-blue-500' : 'bg-green-500'} shadow-glow z-10 relative`"></div>
+              <div :class="`w-4 h-4 rounded-full ${item.type === 'education' ? 'bg-blue-500' : 'bg-green-500'} shadow-glow z-10 relative top-[10px]`"></div>
               
               <!-- Institution/Company name -->
               <div :class="`mt-4 text-sm font-semibold ${item.type === 'education' ? 'text-blue-400' : 'text-green-400'}`">
