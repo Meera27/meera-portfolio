@@ -3,7 +3,7 @@
     <div class="flex w-full max-w-4xl">
       <div class="content-wrapper w-full flex">
         <div class="vertical-text-container flex items-center mr-4">
-          <div class="vertical-text">aboutMe</div>
+          <div class="vertical-text">ABOUT ME</div>
         </div>
         <div class="content-container flex-grow">
           <p class="mb-4">
@@ -28,8 +28,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 
 .about-me-container {
   display: flex;
@@ -46,16 +45,15 @@ export default {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   padding: 1rem 0;
-  font-family: "Rowdies", sans-serif;
-  font-weight: 700;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 200;
   font-style: normal;
   text-transform: none;
   letter-spacing: 0.05em;
   color: #00FFFF;
   transform: rotate(180deg);
-  font-size: 3rem; /* Increased from 2rem to 3rem */
+  font-size: 2.5rem;
 }
-
 
 
 </style>

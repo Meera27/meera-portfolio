@@ -8,7 +8,7 @@
           <p class="text-xl md:text-2xl text-gray-400 mb-6">Software Developer</p>
           <p class="text-lg md:text-xl italic mb-8">"In the grand scheme of things, remember to always keep your code clean and your coffee strong. Success is just a semicolon away!"</p>
           <a href="https://drive.google.com/file/d/1LNBpSIHx_h-nzijaHZTiRPJsCoU6fo4Q/view?usp=sharing" target="_blank" class="resume-link text-lg">
-            <span>Resume</span>
+            <span>RESUME</span>
           </a>
         </div>
       </div>
@@ -65,17 +65,6 @@ body {
   background-color: #1F2226;
 }
 
-/* .blue-rectangle {
-  position: absolute;
-  top: -10px;
-  right: -20px;
-  bottom: -10px;
-  border-top: 2px solid #00FFFF;
-  border-right: 2px solid #00FFFF;
-  border-bottom: 2px solid #00FFFF;
-  width: calc(100% + 10px);
-  z-index: 0;
-} */
 .blue-rectangle {
   position: absolute;
   top: -20px;
@@ -87,9 +76,6 @@ body {
   width: 90%;
   z-index: 0;
 }
-
-
-
 
 .skill-icon {
   position: relative;
@@ -118,64 +104,46 @@ body {
   visibility: visible;
 }
 
+
 .resume-link {
   text-decoration: none;
   color: white;
   position: relative;
   padding: 2px 4px;
-  transition: color 0.3s ease-in-out;
 }
 
 .resume-link::before,
-.resume-link::after,
-.resume-link span::before,
-.resume-link span::after {
+.resume-link::after {
   content: '';
   position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 2px;
   background-color: #39FF14;
-  transition: all 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
 }
 
 .resume-link::before {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .resume-link::after {
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 2px;
+  right: 50%;
+  transform: translateX(50%);
 }
 
-.resume-link span::before {
-  top: 0;
-  left: 0;
-  width: 2px;
-  height: 0;
-}
-
-.resume-link span::after {
-  bottom: 0;
-  right: 0;
-  width: 2px;
-  height: 0;
-}
-
+.resume-link:hover::before,
 .resume-link:hover::after,
-.resume-link:focus::after,
-.resume-link:hover span::before,
-.resume-link:focus span::before,
-.resume-link:hover span::after,
-.resume-link:focus span::after {
-  width: 100%;
-  height: 100%;
+.resume-link:focus::before,
+.resume-link:focus::after {
+  width: 50%;
 }
 
-.resume-link:hover,
+/* Remove this block to keep the text color white */
+/* .resume-link:hover,
 .resume-link:focus {
   color: #39FF14;
-}
+} */
+
 </style>

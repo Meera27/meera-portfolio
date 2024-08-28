@@ -1,6 +1,6 @@
 <template>
   <div class="bg-[#1F2226] text-white py-4 min-h-screen flex items-center">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row relative">
       <div class="projects-grid">
         <ProjectCard
           v-for="project in projects"
@@ -9,7 +9,7 @@
           class="project-card"
         />
       </div>
-      <div class="projects-label right flex items-center">
+      <div class="projects-label right flex flex-row items-center">
         <div class="line"></div>
         <span>Projects</span>
         <div class="line"></div>
@@ -31,7 +31,7 @@ export default {
       projects: [
         {
           name: "Personal Portfolio Website",
-          image: "unnamed.jpg",
+          image: "portfolio.png",
           skills: ["Vue.js", "TailwindCSS"],
           explanation: `My Personal Portfolio website, built with Vue.js and Tailwind CSS, serves as a dynamic showcase of my professional journey. It brings together my skills, experiences, and projects, offering an interactive and visually appealing overview of my capabilities and achievements.`,
           githubLink: ""
@@ -74,29 +74,34 @@ export default {
 .container {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Aligns content to the right */
+  justify-content: flex-end;
   height: 100%;
+  position: relative;
 }
 
 .projects-label {
   display: flex;
+  flex-direction: row;
   align-items: center;
   font-size: 2rem;
   font-weight: bold;
   color: #00FFFF;
-  margin: 0 1rem;
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .projects-label.right {
   writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 
 .line {
-  width: 50px; /* Adjust line length */
-  height: 2px; /* Adjust line thickness */
+  width: 2px;
+  height: 50px;
   background-color: #00FFFF;
-  margin: 0 1rem; /* Spacing around the lines */
+  margin: 0 1rem;
 }
 
 .projects-grid {
@@ -105,10 +110,22 @@ export default {
   grid-template-rows: repeat(5, 1fr);
   gap: 0;
   width: 100%;
+  padding-right: 6rem;
 }
 
 .project-card {
   aspect-ratio: 12 / 8;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 @media (min-width: 640px) {
