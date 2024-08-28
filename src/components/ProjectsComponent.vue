@@ -11,7 +11,7 @@
       </div>
       <div class="projects-label right flex flex-row items-center">
         <div class="line"></div>
-        <span>Projects</span>
+        <span>PROJECTS</span>
         <div class="line"></div>
       </div>
     </div>
@@ -71,6 +71,11 @@ export default {
 </script>
 
 <style scoped>
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+
+
 .container {
   display: flex;
   align-items: center;
@@ -83,8 +88,10 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 2rem;
-  font-weight: bold;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 100;
+  font-size: 2.5rem;
+  font-style: normal;
   color: #00FFFF;
   position: absolute;
   right: 0.5rem;
