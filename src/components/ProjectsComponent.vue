@@ -1,22 +1,18 @@
 <template>
-  <div class="bg-[#1F2226] text-white py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-12 text-center">My Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-        <!-- First row: 3 projects -->
+  <div class="bg-[#1F2226] text-white py-4 min-h-screen flex items-center">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row">
+      <div class="projects-grid">
         <ProjectCard
-          v-for="project in firstRowProjects"
+          v-for="project in projects"
           :key="project.name"
           :project="project"
+          class="project-card"
         />
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <!-- Second row: 2 projects -->
-        <ProjectCard
-          v-for="project in secondRowProjects"
-          :key="project.name"
-          :project="project"
-        />
+      <div class="projects-label right flex items-center">
+        <div class="line"></div>
+        <span>Projects</span>
+        <div class="line"></div>
       </div>
     </div>
   </div>
@@ -70,14 +66,66 @@ export default {
         }
       ]
     }
-  },
-  computed: {
-    firstRowProjects() {
-      return this.projects.slice(0, 3)
-    },
-    secondRowProjects() {
-      return this.projects.slice(3)
-    }
   }
 }
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Aligns content to the right */
+  height: 100%;
+}
+
+.projects-label {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00FFFF;
+  margin: 0 1rem;
+}
+
+.projects-label.right {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.line {
+  width: 50px; /* Adjust line length */
+  height: 2px; /* Adjust line thickness */
+  background-color: #00FFFF;
+  margin: 0 1rem; /* Spacing around the lines */
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  gap: 0;
+  width: 100%;
+}
+
+.project-card {
+  aspect-ratio: 12 / 8;
+}
+
+@media (min-width: 640px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+  .projects-grid > :last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-grid {
+    width: calc(100% - 8rem);
+  }
+}
+</style>

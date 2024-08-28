@@ -16,8 +16,8 @@
       <!-- Right div with photo -->
       <div class="w-full md:w-2/5 flex flex-col items-center justify-center p-4 md:p-8">
         <div class="relative group">
-          <img src="@/assets/unnamed.jpg" alt="Meera" class="w-64 h-64 md:w-80 md:h-80 object-cover z-10 relative transition-transform duration-300 ease-in-out group-hover:-translate-x-2 group-hover:-translate-y-2">
-          <div class="absolute top-0 right-0 w-64 h-64 md:w-80 md:h-80 border-t-4 border-r-4 border-b-4 border-neon-blue opacity-75 transition-all duration-300 ease-in-out group-hover:translate-x-2 group-hover:-translate-y-2"></div>
+          <div class="blue-rectangle"></div>
+          <img src="@/assets/unnamed.jpg" alt="Meera" class="w-64 h-64 md:w-80 md:h-80 object-cover z-10 relative">
         </div>
       </div>
     </div>
@@ -65,16 +65,31 @@ body {
   background-color: #1F2226;
 }
 
-@keyframes neon-glow {
-  0%, 100% {
-    box-shadow: 2px 0 5px #00FFFF, 2px 0 10px #00FFFF, 2px 0 15px #00FFFF, 2px 0 20px #00FFFF;
-  }
+/* .blue-rectangle {
+  position: absolute;
+  top: -10px;
+  right: -20px;
+  bottom: -10px;
+  border-top: 2px solid #00FFFF;
+  border-right: 2px solid #00FFFF;
+  border-bottom: 2px solid #00FFFF;
+  width: calc(100% + 10px);
+  z-index: 0;
+} */
+.blue-rectangle {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  bottom: -20px;
+  border-top: 2px solid #00FFFF;
+  border-right: 2px solid #00FFFF;
+  border-bottom: 2px solid #00FFFF;
+  width: 90%;
+  z-index: 0;
 }
 
-.border-neon-blue {
-  border-color: #00FFFF;
-  animation: neon-glow 1.5s ease-in-out infinite;
-}
+
+
 
 .skill-icon {
   position: relative;

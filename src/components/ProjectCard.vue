@@ -1,22 +1,17 @@
 <template>
-  <div class="bg-[#262A2E] rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 border border-gray-700 w-full max-w-sm relative group">
-    <img :src="projectImage" :alt="project.name" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h3 class="text-lg font-semibold mb-2 text-center">{{ project.name }}</h3>
-      <div class="flex flex-wrap justify-center gap-1">
-        <span v-for="skill in project.skills" :key="skill" class="bg-gray-700 text-xs text-cyan-400 px-2 py-1 rounded">
+  <div class="bg-[#262A2E] overflow-hidden shadow-lg border border-gray-700 w-full h-full relative group">
+    <img :src="projectImage" :alt="project.name" class="w-full h-full object-cover">
+    <div 
+      class="absolute inset-0 bg-[#262A2E] bg-opacity-95 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4"
+    >
+      <h3 class="text-xl font-semibold mb-4 text-center text-white">{{ project.name }}</h3>
+      <div class="flex flex-wrap justify-center gap-2 mb-4">
+        <span v-for="skill in project.skills" :key="skill" class="bg-gray-700 text-xs sm:text-sm text-cyan-400 px-2 py-1">
           {{ skill }}
         </span>
       </div>
-    </div>
-    <div 
-      class="absolute inset-0 bg-[#262A2E] bg-opacity-95 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-    >
-      <p class="text-white text-center p-4 mb-4 whitespace-pre-line">
-        {{ project.explanation }}
-      </p>
-      <a :href="project.githubLink" target="_blank" rel="noopener noreferrer" class="github-button text-sm text-white">
-        Github
+      <a :href="project.githubLink" target="_blank" rel="noopener noreferrer" class="github-button text-base sm:text-lg text-white hover:text-cyan-400 transition-colors duration-300">
+        GitHub
       </a>
     </div>
   </div>
@@ -63,3 +58,5 @@ export default {
   width: 100%;
 }
 </style>
+
+
