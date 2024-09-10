@@ -1,25 +1,39 @@
 <template>
-  <div id="about" class="about-me-container bg-[#1F2226] text-white flex items-center justify-center -mt-19">
-    <div class="flex w-full max-w-4xl">
+  <div id="about" class="about-me-container bg-[#1F2226] text-white flex items-center justify-center -mt-20">
+    <div class="flex w-full max-w-6xl"> <!-- Increased max-width -->
       <div class="content-wrapper w-full flex">
-        <div class="vertical-text-container flex items-center mr-4">
+        <div class="vertical-text-container flex flex-col items-center mr-4">
+          <div class="line"></div>
           <div class="vertical-text">ABOUT ME</div>
+          <div class="line"></div>
         </div>
+
         <div class="content-container flex-grow">
           <p class="mb-4">
-            Hey there! 👋 I'm an aspiring software developer on a quest to conquer the digital realm, one line of code at a time. Currently navigating the exciting waters of academia 📚—because who doesn't love the thrill of finals week?—I have a knack for problem-solving that rivals even the most determined Sudoku enthusiasts. 🧩
+            Hey there! 👋 I'm an aspiring software developer on a quest to conquer the digital realm, one line of code
+            at a time. Currently navigating the exciting waters of academia 📚—because who doesn't love the thrill of
+            finals week?—I have a knack for problem-solving that rivals even the most determined Sudoku enthusiasts. 🧩
           </p>
           <p class="mb-4">
-            When I'm not busy wrestling with algorithms or deciphering the mysteries of JavaScript 💻, you can find me daydreaming about the next big app or getting lost in the latest tech trends. My love for programming is matched only by my fascination with caffeine ☕; let's just say they both fuel my late-night coding marathons! 🌙
+            When I'm not busy wrestling with algorithms or deciphering the mysteries of JavaScript 💻, you can find me
+            daydreaming about the next big app or getting lost in the latest tech trends. My love for programming is
+            matched only by my fascination with caffeine ☕; let's just say they both fuel my late-night coding
+            marathons! 🌙
           </p>
           <p class="mb-4">
-            I'm a firm believer in the power of continuous learning 🧠. Whether it's diving into a new programming language, exploring cutting-edge frameworks, or tinkering with IoT devices, I'm always up for a challenge. My GitHub is a treasure trove of projects, each one a testament to my growth and creativity. 🌱
+            I'm a firm believer in the power of continuous learning 🧠. Whether it's diving into a new programming
+            language, exploring cutting-edge frameworks, or tinkering with IoT devices, I'm always up for a challenge.
+            My GitHub is a treasure trove of projects, each one a testament to my growth and creativity. 🌱
           </p>
           <p class="mb-4">
-            When I'm not immersed in the world of bits and bytes, you might catch me attempting to explain programming concepts to my houseplants 🌿 (they're great listeners!), or trying to convince my cat that my keyboard is not the most comfortable napping spot. 🐱💻
+            When I'm not immersed in the world of bits and bytes, you might catch me attempting to explain programming
+            concepts to my houseplants 🌿 (they're great listeners!), or trying to convince my cat that my keyboard is
+            not the most comfortable napping spot. 🐱💻
           </p>
           <p>
-            Join me on this journey as I turn caffeine into code and dreams into reality. Who knows? Maybe one day, my software will change the world 🌍—or at least make your life a little easier (or a lot more fun!). Cheers to the adventure ahead, and may your code always compile on the first try! 🚀
+            Join me on this journey as I turn caffeine into code and dreams into reality. Who knows? Maybe one day, my
+            software will change the world 🌍—or at least make your life a little easier (or a lot more fun!). Cheers to
+            the adventure ahead, and may your code always compile on the first try! 🚀
           </p>
         </div>
       </div>
@@ -39,6 +53,9 @@ export default {
 .about-me-container {
   display: flex;
   padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  /* Ensure padding and border are included in the total width */
 }
 
 .content-wrapper {
@@ -49,13 +66,22 @@ export default {
 
 .vertical-text-container {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
   align-items: center;
+  margin-right: 1rem;
 }
+
+.line {
+  width: 2px;
+  height: 50px;
+  background-color: #00FFFF;
+  margin: 1rem 0;
+}
+
 
 .vertical-text {
   writing-mode: vertical-rl;
-  text-orientation: mixed;
+  transform: rotate(180deg);
   padding: 1rem 0;
   font-family: "Fira Sans", sans-serif;
   font-weight: 100;
@@ -63,9 +89,9 @@ export default {
   text-transform: none;
   letter-spacing: 0.05em;
   color: #00FFFF;
-  transform: rotate(180deg);
   font-size: 2.3rem;
 }
+
 
 .content-container {
   flex: 1;
@@ -78,4 +104,3 @@ export default {
   text-align: left;
 }
 </style>
-

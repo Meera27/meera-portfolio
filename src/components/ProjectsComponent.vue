@@ -31,7 +31,7 @@ export default {
       projects: [
         {
           name: "Personal Portfolio Website",
-          image: "portfolio.png",
+          image: "portfolio.jpg",
           skills: ["Vue.js", "TailwindCSS"],
           explanation: `My Personal Portfolio website, built with Vue.js and Tailwind CSS, serves as a dynamic showcase of my professional journey. It brings together my skills, experiences, and projects, offering an interactive and visually appealing overview of my capabilities and achievements.`,
           githubLink: ""
@@ -95,9 +95,10 @@ export default {
   color: #00FFFF;
   position: absolute;
   right: 0.5rem;
-  top: 50%;
+  top: 33%; /* Changed from 50% to 33% to align with the second row */
   transform: translateY(-50%);
 }
+
 
 .projects-label.right {
   writing-mode: vertical-rl;
@@ -152,4 +153,16 @@ export default {
     width: calc(100% - 8rem);
   }
 }
+
+@media (max-width: 639px) {
+  .projects-label {
+    font-size: 2rem;
+    top: 25%; /* Adjust for smaller screens if needed */
+  }
+  
+  .line {
+    height: 40px; /* Slightly shorter lines for smaller screens */
+  }
+}
+
 </style>
