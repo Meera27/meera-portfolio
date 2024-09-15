@@ -3,5 +3,10 @@ import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
     base: "/meera-portfolio/",
-    plugins : [vue()]
+    plugins : [vue()],
+    resolve: {
+    alias: [
+      
+    ]
+  },
 })
