@@ -41,8 +41,9 @@
         timelineItems: [
           { period: '2016-2018', name: `St Mary's School`, type: 'education', role: 'Student' },
           { period: '2018-2022', name: 'AJCE', type: 'education', role: 'Student' },
-          { period: '2022-2023', name: 'Cognizant', type: 'work', role: ' CSD Intern' },
+          { period: '2022-2023', name: 'Cognizant', type: 'work', role: 'Intern' },
           { period: '2023-Present', name: 'Concordia University', type: 'education', role: 'Student' },
+          {period: '2024-Present', name: 'FreshPrep', type: 'work', role: 'Full-Stack Developer Intern'}
         ]
       }
     }
@@ -53,5 +54,7 @@
   .shadow-glow {
     box-shadow: 0 0 10px 2px currentColor;
   }
+
+
   </style>
   

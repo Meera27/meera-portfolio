@@ -1,18 +1,18 @@
 <template>
-  <div class="bg-[#1F2226] text-white py-4 min-h-screen flex items-center">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row relative">
-      <div class="projects-grid">
-        <ProjectCard
-          v-for="project in projects"
-          :key="project.name"
-          :project="project"
-          class="project-card"
-        />
-      </div>
-      <div class="projects-label right flex flex-row items-center">
-        <div class="line"></div>
+  <div class="bg-[#1F2226] text-white py-4 min-h-screen flex flex-col justify-center">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="projects-label">
         <span>PROJECTS</span>
-        <div class="line"></div>
+      </div>
+      <div class="projects-carousel-container">
+        <div class="projects-carousel" ref="carousel">
+          <ProjectCard
+            v-for="project in duplicatedProjects"
+            :key="project.id"
+            :project="project"
+            class="project-card"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -64,105 +64,108 @@ export default {
           explanation: `Library management system that offers a smooth user interface and leverages AJAX for instant content updates. Also features an advanced system for managing books and integrates secure authentication to protect access. Uses Angular for immediate availability updates and is designed for scalability, ensuring easy feature expansion and maintenance.`,
           githubLink: "https://github.com/Meera27/LibraryApp-Angular"
         }
-      ]
+      ],
+      animationId: null
+    }
+  },
+  computed: {
+    duplicatedProjects() {
+      return [...this.projects, ...this.projects].map((project, index) => ({
+        ...project,
+        id: `${project.name}-${index}`
+      }))
+    }
+  },
+  mounted() {
+    this.startCarousel()
+  },
+  beforeUnmount() {
+    this.stopCarousel()
+  },
+  methods: {
+    startCarousel() {
+      const carousel = this.$refs.carousel
+      let position = 0
+
+      const animate = () => {
+        position -= 1.25 // Slower speed
+        if (position <= -carousel.offsetWidth / 2) {
+          position = 0
+        }
+        carousel.style.transform = `translateX(${position}px)`
+        this.animationId = requestAnimationFrame(animate)
+      }
+
+      this.animationId = requestAnimationFrame(animate)
+    },
+    stopCarousel() {
+      if (this.animationId) {
+        cancelAnimationFrame(this.animationId)
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-
-
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .projects-label {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   font-family: "Fira Sans", sans-serif;
   font-weight: 100;
   font-size: 2.5rem;
-  font-style: normal;
   color: #00FFFF;
-  position: absolute;
-  right: 0.5rem;
-  top: 33%; /* Changed from 50% to 33% to align with the second row */
-  transform: translateY(-50%);
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-
-.projects-label.right {
-  writing-mode: vertical-rl;
-  transform: rotate(0deg);
-}
-
-.line {
-  width: 2px;
-  height: 50px;
-  background-color: #00FFFF;
-  margin: 0 1rem;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 1fr);
-  gap: 0;
+.projects-carousel-container {
   width: 100%;
-  padding-right: 6rem;
-}
-
-.project-card {
-  aspect-ratio: 12 / 8;
   overflow: hidden;
   position: relative;
 }
 
-.project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.projects-carousel-container::before,
+.projects-carousel-container::after {
+  content: '';
   position: absolute;
   top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.projects-carousel-container::before {
   left: 0;
+  background: linear-gradient(to right, #1F2226 0%, rgba(31, 34, 38, 0) 100%);
 }
 
-@media (min-width: 640px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-  }
-  .projects-grid > :last-child {
-    grid-column: 1 / -1;
-    justify-self: center;
-    max-width: 50%;
-  }
+.projects-carousel-container::after {
+  right: 0;
+  background: linear-gradient(to left, #1F2226 0%, rgba(31, 34, 38, 0) 100%);
 }
 
-@media (min-width: 1024px) {
-  .projects-grid {
-    width: calc(100% - 8rem);
-  }
+.projects-carousel {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+}
+
+.project-card {
+  flex: 0 0 auto;
+  width: 350px;
+  height: 350px;
 }
 
 @media (max-width: 639px) {
   .projects-label {
     font-size: 2rem;
-    top: 25%; /* Adjust for smaller screens if needed */
-  }
-  
-  .line {
-    height: 40px; /* Slightly shorter lines for smaller screens */
   }
 }
-
 </style>

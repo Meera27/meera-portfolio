@@ -10,14 +10,15 @@
           {{ skill }}
         </span>
       </div>
+      <p class="text-sm text-white text-center mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        {{ truncatedExplanation }}
+      </p>
       <a :href="project.githubLink" target="_blank" rel="noopener noreferrer" class="github-button text-base sm:text-lg text-white hover:text-cyan-400 transition-colors duration-300 opacity-0 group-hover:opacity-100">
         GitHub
       </a>
     </div>
   </div>
 </template>
-
-
 
 <script>
 export default {
@@ -35,6 +36,11 @@ export default {
       } catch (e) {
         return require('@/assets/unnamed.jpg')
       }
+    },
+    truncatedExplanation() {
+      return this.project.explanation.length > 150
+        ? this.project.explanation.slice(0, 150) + '...'
+        : this.project.explanation;
     }
   }
 }
@@ -60,5 +66,3 @@ export default {
   width: 100%;
 }
 </style>
-
-
