@@ -1,19 +1,15 @@
 <template>
-  <div class="bg-[#262A2E] overflow-hidden shadow-lg border border-gray-700 w-full h-full relative group">
+  <div class="project-card">
     <img :src="projectImage" :alt="project.name" class="w-full h-full object-cover">
-    <div 
-      class="absolute inset-0 bg-[#262A2E] bg-opacity-0 group-hover:bg-opacity-95 flex flex-col items-center justify-center transition-all duration-300 p-4"
-    >
-      <h3 class="text-xl font-semibold mb-4 text-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">{{ project.name }}</h3>
-      <div class="flex flex-wrap justify-center gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <span v-for="skill in project.skills" :key="skill" class="bg-gray-700 text-xs sm:text-sm text-cyan-400 px-2 py-1">
+    <div class="overlay">
+      <h3 class="project-title">{{ project.name }}</h3>
+      <div class="skills">
+        <span v-for="skill in project.skills" :key="skill" class="skill">
           {{ skill }}
         </span>
       </div>
-      <p class="text-sm text-white text-center mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        {{ truncatedExplanation }}
-      </p>
-      <a :href="project.githubLink" target="_blank" rel="noopener noreferrer" class="github-button text-base sm:text-lg text-white hover:text-cyan-400 transition-colors duration-300 opacity-0 group-hover:opacity-100">
+      <p class="explanation">{{ truncatedExplanation }}</p>
+      <a :href="project.githubLink" target="_blank" rel="noopener noreferrer" class="github-button">
         GitHub
       </a>
     </div>
@@ -47,22 +43,133 @@ export default {
 </script>
 
 <style scoped>
-.github-button {
+.project-card {
   position: relative;
+  overflow: hidden;
+  background-color: #262A2E;
+  border: 1px solid #444;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 600px; /* Increase height from default to 600px */
 }
 
-.github-button::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 1px;
-  bottom: -2px;
-  left: 0;
-  background-color: #00FFFF;
-  transition: width 0.3s ease;
-}
-
-.github-button:hover::after {
+/* Ensure image fills the taller space */
+.project-card img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Adjust overlay to match new height */
+.overlay {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  background-color: rgba(38, 42, 46, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.project-card:hover .overlay {
+  opacity: 1;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.skill {
+  background-color: #444;
+  color: #00FFFF;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.explanation {
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.github-button {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid #00FFFF;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.github-button:hover {
+  color: #00FFFF;
+  border-color: #00FFFF;
+}
+
+@media (max-width: 1024px) { 
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 700px;
+    padding: 0 2rem;
+  }
+
+  .left, .right {
+    grid-column: 1;
+    margin-top: 2rem;
+  }
+
+  .left:first-child {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .project-card {
+    height: 400px;
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+  }
+
+  .explanation {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+
+  .skills {
+    gap: 0.25rem;
+  }
+
+  .skill {
+    padding: 0.15rem 0.35rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .project-card {
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    height: 400px;
+  }
 }
 </style>

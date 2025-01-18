@@ -1,20 +1,13 @@
 <template>
-  <div class="bg-[#1F2226] text-white py-4 min-h-screen flex flex-col justify-center">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="projects-label">
-        <span>PROJECTS</span>
-      </div>
-      <div class="projects-carousel-container">
-        <div class="projects-carousel" ref="carousel">
-          <ProjectCard
-            v-for="project in duplicatedProjects"
-            :key="project.id"
-            :project="project"
-            class="project-card"
-          />
-        </div>
+  <div class="projects-section">
+  <div class="projects-container">
+    <h2 class="projects-heading">PROJECTS</h2>
+    <div class="grid-container">
+      <div v-for="(project, index) in projects" :key="project.id" :class="getGridClass(index)">
+        <ProjectCard :project="project" />
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -57,115 +50,94 @@ export default {
           explanation: `This blog application combines a user-friendly interface, robust content moderation, and community engagement features. Its integration of RESTful APIs ensures smooth operations and scalability, promising an all-rounded and engaging blogging experience.`,
           githubLink: "https://github.com/Meera27/Digital-Diary"
         },
-        {
-          name: "READ",
-          image: "READ.webp",
-          skills: ["Angular", "Nodejs", "Expressjs", "MongoDB", "RESTful APIs"],
-          explanation: `Library management system that offers a smooth user interface and leverages AJAX for instant content updates. Also features an advanced system for managing books and integrates secure authentication to protect access. Uses Angular for immediate availability updates and is designed for scalability, ensuring easy feature expansion and maintenance.`,
-          githubLink: "https://github.com/Meera27/LibraryApp-Angular"
-        }
+        // {
+        //   name: "READ",
+        //   image: "READ.webp",
+        //   skills: ["Angular", "Nodejs", "Expressjs", "MongoDB", "RESTful APIs"],
+        //   explanation: `Library management system that offers a smooth user interface and leverages AJAX for instant content updates. Also features an advanced system for managing books and integrates secure authentication to protect access. Uses Angular for immediate availability updates and is designed for scalability, ensuring easy feature expansion and maintenance.`,
+        //   githubLink: "https://github.com/Meera27/LibraryApp-Angular"
+        // }
       ],
-      animationId: null
     }
-  },
-  computed: {
-    duplicatedProjects() {
-      return [...this.projects, ...this.projects].map((project, index) => ({
-        ...project,
-        id: `${project.name}-${index}`
-      }))
-    }
-  },
-  mounted() {
-    this.startCarousel()
-  },
-  beforeUnmount() {
-    this.stopCarousel()
   },
   methods: {
-    startCarousel() {
-      const carousel = this.$refs.carousel
-      let position = 0
-
-      const animate = () => {
-        position -= 1.25 // Slower speed
-        if (position <= -carousel.offsetWidth / 2) {
-          position = 0
-        }
-        carousel.style.transform = `translateX(${position}px)`
-        this.animationId = requestAnimationFrame(animate)
-      }
-
-      this.animationId = requestAnimationFrame(animate)
-    },
-    stopCarousel() {
-      if (this.animationId) {
-        cancelAnimationFrame(this.animationId)
-      }
+    getGridClass(index) {
+      return index % 2 === 0 ? 'left' : 'right';
     }
   }
 }
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-
-.container {
-  position: relative;
-  overflow: hidden;
-}
-
-.projects-label {
-  font-family: "Fira Sans", sans-serif;
-  font-weight: 100;
-  font-size: 2.5rem;
-  color: #00FFFF;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.projects-carousel-container {
+.projects-section {
+  background-color: #1E2024;
+  min-height: 100vh;
   width: 100%;
-  overflow: hidden;
-  position: relative;
+  padding: 2rem 0;
 }
 
-.projects-carousel-container::before,
-.projects-carousel-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.projects-carousel-container::before {
-  left: 0;
-  background: linear-gradient(to right, #1F2226 0%, rgba(31, 34, 38, 0) 100%);
-}
-
-.projects-carousel-container::after {
-  right: 0;
-  background: linear-gradient(to left, #1F2226 0%, rgba(31, 34, 38, 0) 100%);
-}
-
-.projects-carousel {
+.projects-container {
   display: flex;
-  gap: 1rem;
-  width: max-content;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
-.project-card {
-  flex: 0 0 auto;
-  width: 350px;
-  height: 350px;
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1090px;
 }
 
-@media (max-width: 639px) {
-  .projects-label {
-    font-size: 2rem;
+.projects-heading {
+  position: absolute;
+  left: 4rem;
+  top: 0;
+  color: #00FFFF;
+  font-size: 1.8rem;
+  font-weight: 100;
+  font-family: "Fira Sans", sans-serif;
+  letter-spacing: 0.1em;
+}
+
+.left {
+  grid-column: 1 / 2;
+  margin-top: 25rem; 
+}
+
+.right {
+  grid-column: 2 / 3;
+}
+
+@media (max-width: 1024px) { /* Laptop/medium screen breakpoint */
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 700px;
+    padding: 0 2rem;
+  }
+
+  .left, .right {
+    grid-column: 1;
+    margin-top: 2rem;
+  }
+
+  .left:first-child {
+    margin-top: 0;
   }
 }
+
+@media (max-width: 768px) { /* Mobile breakpoint */
+  .grid-container {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .left, .right {
+    margin-top: 1rem;
+  }
+}
+
 </style>

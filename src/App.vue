@@ -17,8 +17,6 @@
     <experience-component/> 
     <FooterComponent />   
     <SocialIcons/>
-    
-    <!-- Any other sections or components -->
   </div>
 
 </template>
@@ -46,3 +44,7 @@ export default {
   },
 };
 </script>
+
+<style>
+
+</style>

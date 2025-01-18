@@ -1,6 +1,6 @@
 <template>
-  <div id="about" class="about-me-container bg-[#1F2226] text-white flex items-center justify-center -mt-20">
-    <div class="flex w-full max-w-6xl">
+  <div id="about" class="about-me-container bg-[#1F2226] text-white flex items-center justify-center -mt-20 wave-left">
+    <div class="flex w-full max-w-7xl">
       <div class="content-wrapper w-full flex">
         <div class="vertical-text-container flex flex-col items-center mr-4">
           <div class="line"></div>
