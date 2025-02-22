@@ -22,29 +22,41 @@
 </template>
 
 <script>
-// import AboutComponent from './components/AboutComponent.vue';
-import AboutComponent from './components/AboutComponent.vue';
+
 import ExperienceComponent from './components/ExperienceComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
 import HomeComponent from './components/HomeComponent.vue';
 import NavBarComponent from './components/NavBarComponent.vue';
 import ProjectsComponent from './components/ProjectsComponent.vue';
 import SocialIcons from './components/SocialIcons.vue';
+import LocomotiveScroll from 'locomotive-scroll'
+import 'locomotive-scroll/dist/locomotive-scroll.css'
+import { onMounted } from 'vue'
 
-export default {
+export default({
   name: 'App',
   components: {
     NavBarComponent,
     HomeComponent,
-    AboutComponent,
     ProjectsComponent,
     ExperienceComponent,
     FooterComponent,
     SocialIcons
   },
-};
+  setup() {
+    onMounted(() => {
+      const scrollEl = document.querySelector('#app')
+      new LocomotiveScroll({
+        el: scrollEl,
+        smooth: true,
+        lerp: 0.05 // lower = slower
+      })
+    })
+
+    return {}
+  }
+})
 </script>
 
 <style>
-
 </style>
