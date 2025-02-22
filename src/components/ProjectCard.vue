@@ -52,7 +52,9 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 600px; /* Increase height from default to 600px */
+  height: 550px;
+  max-width: 450px; /* Add max-width to constrain card width */
+  margin: 0 auto; /* Center the card */
 }
 
 /* Ensure image fills the taller space */
@@ -66,7 +68,9 @@ export default {
 .overlay {
   position: absolute;
   inset: 0;
+  width: 100%; /* Reduce from 100% to 80% */
   height: 100%;
+  margin: 0 auto; /* Center the overlay */
   background-color: rgba(38, 42, 46, 0.9);
   display: flex;
   flex-direction: column;
@@ -74,6 +78,8 @@ export default {
   align-items: center;
   opacity: 0;
   transition: opacity 0.3s;
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
 }
 
 .project-card:hover .overlay {

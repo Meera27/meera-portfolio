@@ -1,8 +1,8 @@
 <template>
   <div class="projects-section">
   <div class="projects-container">
-    <h2 class="projects-heading">PROJECTS</h2>
     <div class="grid-container">
+      <h2 class="projects-heading">PROJECTS</h2>
       <div v-for="(project, index) in projects" :key="project.id" :class="getGridClass(index)">
         <ProjectCard :project="project" />
       </div>
@@ -73,33 +73,40 @@ export default {
   background-color: #1E2024;
   min-height: 100vh;
   width: 100%;
-  padding: 2rem 0;
+  padding: 4rem 0;
+  position: relative; 
 }
 
 .projects-container {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column; 
+  align-items: flex-start; 
   padding: 2rem;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  width: 100%;
-  max-width: 1090px;
 }
 
 .projects-heading {
   position: absolute;
-  left: 4rem;
-  top: 0;
   color: #00FFFF;
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   font-weight: 100;
   font-family: "Fira Sans", sans-serif;
   letter-spacing: 0.1em;
+  left: 30rem; 
+  top: 2rem;
+  margin-bottom: 4rem; 
+  z-index: 10;
+}
+
+.grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-top: 1.0rem;
+  padding: 0 2rem;
 }
 
 .left {
@@ -111,7 +118,7 @@ export default {
   grid-column: 2 / 3;
 }
 
-@media (max-width: 1024px) { /* Laptop/medium screen breakpoint */
+@media (max-width: 1024px) {
   .grid-container {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -129,7 +136,7 @@ export default {
   }
 }
 
-@media (max-width: 768px) { /* Mobile breakpoint */
+@media (max-width: 768px) {
   .grid-container {
     gap: 1rem;
     padding: 0 1rem;
