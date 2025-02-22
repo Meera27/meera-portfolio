@@ -1,10 +1,15 @@
 <template>
 
   <div id="app">
+    <AsteroidsComponent />
     <NavBarComponent />
     
     <section id="home">
       <home-component/>
+    </section>
+
+    <section id="skills">
+      <SkillsComponent/>
     </section>
     
     <section id="about">
@@ -14,6 +19,7 @@
     <section id="projects">
       <ProjectsComponent />
     </section>
+
     <experience-component/> 
     <FooterComponent />   
     <SocialIcons/>
@@ -23,6 +29,7 @@
 
 <script>
 
+import AsteroidsComponent from './components/AsteroidsComponent.vue';
 import ExperienceComponent from './components/ExperienceComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
 import HomeComponent from './components/HomeComponent.vue';
@@ -41,6 +48,7 @@ export default({
     HomeComponent,
     ProjectsComponent,
     ExperienceComponent,
+    AsteroidsComponent,
     FooterComponent,
     SocialIcons
   },

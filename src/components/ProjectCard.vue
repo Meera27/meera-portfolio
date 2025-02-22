@@ -52,8 +52,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 550px;
-  max-width: 450px;
+  height: 600px;
+  max-width: 900px;
   margin: 0 auto; 
 }
 

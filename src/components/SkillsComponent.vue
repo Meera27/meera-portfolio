@@ -1,22 +1,24 @@
 <template>
-  <div class="skills-container flex flex-wrap justify-center gap-8 mt-8 p-8">
-    <div class="w-full text-center md:text-left mb-12">
-      <h1 class="figtree-extra-light text-4xl md:text-8xl font-bold mb-4 text-center">
-        skills<span class="text-[#00FFFF]">.</span>
-      </h1>
-    </div>
-    <div v-for="(category, categoryName) in skillCategories" 
-         :key="categoryName"
-         class="w-full category-section">
-      <div class="flex flex-wrap justify-center gap-8">
-        <div v-for="(skill, index) in category" 
-             :key="index"
-             class="skill-item"
-             :style="{ animationDelay: `${index * 0.2}s` }">
-          <button class="skill-button relative inline-flex items-center justify-center text-lg font-bold text-white transition-all duration-200 bg-[#1F2226] rounded-md focus:outline-none hover:text-[#00FFFF] border-2 border-[#00FFFF]">
-            <font-awesome-icon :icon="skill.icon" class="mr-2 text-3xl" />
-            {{ skill.name }}
-          </button>
+  <div class="skills-wrapper relative">
+
+    <div class="skills-container flex flex-wrap justify-center gap-8 mt-8 p-8 relative z-10">
+      <div class="w-full text-center md:text-left mb-12 skill-title">
+        <h1 class="figtree-extra-light text-4xl md:text-8xl font-bold mb-4 text-center">
+          skills<span class="text-[#00FFFF]">.</span>
+        </h1>
+      </div>
+      <div v-for="(category, categoryName) in skillCategories" :key="categoryName" class="w-full category-section">
+        <div class="flex flex-wrap justify-center gap-8">
+          <div v-for="(skill, index) in category" :key="index" class="skill-item"
+            :style="{ animationDelay: `${index * 0.2}s` }">
+            <button
+              class="skill-button relative inline-flex items-center justify-center text-lg font-bold text-white transition-all duration-200 bg-[#1F2226] rounded-md focus:outline-none hover:text-white border-2 border-[#00FFFF] overflow-hidden">
+              <div class="wave-fill"></div>
+              <div class="relative z-10">
+                <font-awesome-icon :icon="skill.icon" class="text-3xl" />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -30,9 +32,9 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faJava, faPython, faJs, faNode, faAngular, faVuejs, faReact, faHtml5, faBootstrap, faCss3, faDocker, faGit, faJira, faFigma, faBitbucket } from '@fortawesome/free-brands-svg-icons'
 import { faDatabase, faServer, faCode, faGears, faWind } from '@fortawesome/free-solid-svg-icons'
 
-library.add( faJava, faPython, faJs, faNode, faAngular, faVuejs, 
-faReact, faHtml5, faBootstrap, faCss3, faDocker, 
-  faGit, faJira, faFigma, faDatabase, faServer, 
+library.add(faJava, faPython, faJs, faNode, faAngular, faVuejs,
+  faReact, faHtml5, faBootstrap, faCss3, faDocker,
+  faGit, faJira, faFigma, faDatabase, faServer,
   faCode, faGears, faBitbucket, faWind
 )
 
@@ -46,14 +48,10 @@ export default {
       'Programming Languages': [
         { name: 'Java', icon: ['fab', 'java'] },
         { name: 'Python', icon: ['fab', 'python'] },
-        { name: 'C', icon: ['fas', 'code'] },
-        { name: 'JavaScript', icon: ['fab', 'js'] },
-        { name: 'TypeScript', icon: ['fab', 'js'] }
       ],
       'Databases': [
-        { name: 'SQL', icon: ['fas', 'database'] },
-        { name: 'MongoDB', icon: ['fas', 'database'] },
         { name: 'MySQL', icon: ['fas', 'database'] },
+        { name: 'MongoDB', icon: ['fas', 'database'] },
         { name: 'PostgreSQL', icon: ['fas', 'database'] }
       ],
       'Frontend Technologies': [
@@ -72,10 +70,6 @@ export default {
         { name: 'Docker', icon: ['fab', 'docker'] },
         { name: 'Git', icon: ['fab', 'git'] },
         { name: 'CI/CD Pipelines', icon: ['fas', 'gears'] },
-        { name: 'Jest', icon: ['fas', 'code'] },
-        { name: 'Playwright', icon: ['fas', 'code'] },
-        { name: 'Figma', icon: ['fab', 'figma'] },
-        { name: 'Bitbucket', icon: ['fab', 'bitbucket'] }
       ]
     })
 
@@ -96,7 +90,10 @@ export default {
       }, observerOptions)
 
       // Observe both categories and skills
-      document.querySelectorAll('.category-section, .skill-item, .category-title').forEach((item) => {
+      const wrapper = document.querySelector('.skills-wrapper')
+      if (wrapper) observer.observe(wrapper)
+
+      document.querySelectorAll('.skill-title,.category-section, .skill-item, .category-title').forEach((item) => {
         observer.observe(item)
       })
     })
@@ -112,6 +109,16 @@ export default {
 .skills-container {
   width: 100%;
   padding: 2rem;
+}
+.skill-title {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-title.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .category-section {
@@ -150,13 +157,31 @@ export default {
   opacity: 1;
   transform: translateY(0);
 }
+.skill-title:not(.show) {
+  opacity: 0;
+  transform: translateY(-50px);
+}
 
 
-.skill-item:nth-child(1) { transition-delay: 0.1s; }
-.skill-item:nth-child(2) { transition-delay: 0.15s; }
-.skill-item:nth-child(3) { transition-delay: 0.2s; }
-.skill-item:nth-child(4) { transition-delay: 0.25s; }
-.skill-item:nth-child(5) { transition-delay: 0.3s; }
+.skill-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.skill-item:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.skill-item:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.skill-item:nth-child(4) {
+  transition-delay: 0.25s;
+}
+
+.skill-item:nth-child(5) {
+  transition-delay: 0.3s;
+}
 
 .skill-button:hover {
   transform: scale(1.05);
@@ -185,7 +210,7 @@ export default {
     height: 90px;
     font-size: 1rem;
   }
-  
+
   .skills-container {
     gap: 1.5rem;
   }

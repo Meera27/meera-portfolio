@@ -30,6 +30,13 @@ export default {
           githubLink: ""
         },
         {
+          name: "READ",
+          image: "READ.webp",
+          skills: ["Angular", "Nodejs", "Expressjs", "MongoDB", "RESTful APIs"],
+          explanation: `Library management system that offers a smooth user interface and leverages AJAX for instant content updates. Also features an advanced system for managing books and integrates secure authentication to protect access. Uses Angular for immediate availability updates and is designed for scalability, ensuring easy feature expansion and maintenance.`,
+          githubLink: "https://github.com/Meera27/LibraryApp-Angular"
+        },
+        {
           name: "VOIX",
           image: "VOIX.webp",
           skills: ["HTML5", "CSS3", "Javascript", "Nodejs", "MongoDB"],
@@ -50,13 +57,13 @@ export default {
           explanation: `This blog application combines a user-friendly interface, robust content moderation, and community engagement features. Its integration of RESTful APIs ensures smooth operations and scalability, promising an all-rounded and engaging blogging experience.`,
           githubLink: "https://github.com/Meera27/Digital-Diary"
         },
-        // {
-        //   name: "READ",
-        //   image: "READ.webp",
-        //   skills: ["Angular", "Nodejs", "Expressjs", "MongoDB", "RESTful APIs"],
-        //   explanation: `Library management system that offers a smooth user interface and leverages AJAX for instant content updates. Also features an advanced system for managing books and integrates secure authentication to protect access. Uses Angular for immediate availability updates and is designed for scalability, ensuring easy feature expansion and maintenance.`,
-        //   githubLink: "https://github.com/Meera27/LibraryApp-Angular"
-        // }
+        {
+          name: "READ",
+          image: "READ.webp",
+          skills: ["Angular", "Nodejs", "Expressjs", "MongoDB", "RESTful APIs"],
+          explanation: `Library management system that offers a smooth user interface and leverages AJAX for instant content updates. Also features an advanced system for managing books and integrates secure authentication to protect access. Uses Angular for immediate availability updates and is designed for scalability, ensuring easy feature expansion and maintenance.`,
+          githubLink: "https://github.com/Meera27/LibraryApp-Angular"
+        }
       ],
     }
   },
@@ -71,7 +78,7 @@ export default {
 <style scoped>
 .projects-section {
   min-height: 100vh;
-  width: 100%;
+  width: 100;
   padding: 4rem 0;
   position: relative; 
 }
@@ -101,11 +108,11 @@ export default {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  max-width: 1400px;
+  gap: 2rem;
+  max-width: 1600px;
   margin: 0 auto;
   margin-top: 1.0rem;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 
 .left {
