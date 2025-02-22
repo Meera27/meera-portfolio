@@ -70,7 +70,6 @@ export default {
 
 <style scoped>
 .projects-section {
-  background-color: #1E2024;
   min-height: 100vh;
   width: 100%;
   padding: 4rem 0;

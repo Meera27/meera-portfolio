@@ -29,9 +29,10 @@ import HomeComponent from './components/HomeComponent.vue';
 import NavBarComponent from './components/NavBarComponent.vue';
 import ProjectsComponent from './components/ProjectsComponent.vue';
 import SocialIcons from './components/SocialIcons.vue';
-import LocomotiveScroll from 'locomotive-scroll'
-import 'locomotive-scroll/dist/locomotive-scroll.css'
-import { onMounted } from 'vue'
+import LocomotiveScroll from 'locomotive-scroll';
+import 'locomotive-scroll/dist/locomotive-scroll.css';
+import { onMounted } from 'vue';
+
 
 export default({
   name: 'App',
@@ -49,7 +50,7 @@ export default({
       new LocomotiveScroll({
         el: scrollEl,
         smooth: true,
-        lerp: 0.05 // lower = slower
+        lerp: 0.07
       })
     })
 
@@ -59,4 +60,7 @@ export default({
 </script>
 
 <style>
+#app{
+  background-color: #1F2226;
+}
 </style>

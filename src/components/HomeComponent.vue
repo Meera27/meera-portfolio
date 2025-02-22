@@ -7,7 +7,7 @@
           <h1 class="text-4xl md:text-8xl font-bold mb-4">about<span style="color: #00FFFF;">.</span></h1>
           <p class="sm:text-2xl text-gray-300 mb-3">I'm <span style="color: #00FFFF;">Meera</span>, a Software Developer</p>
           <p class="figtree-extra-light">
-            Join me as I attempt to change the world one semicolon at a time. Who knows? I might just create an app that finally explains to my mom what I actually do! 🚀 Until then, may your code be bug-free and your coffee be strong! ☕
+            Join me as I attempt to change the world one semicolon at a time. Who knows? I might just create an app that finally explains to my mom what I actually do! 🚀
           </p>
 
           <div class="mt-4">
@@ -22,25 +22,29 @@
       <div class="w-full md:w-2/5 flex flex-col items-center justify-center p-4 md:p-8">
         <div class="image-container">
           <div class="blue-line"></div>
-          <img src="@/assets/unnamed.jpg" alt="Meera" class="w-64 h-64 md:w-80 md:h-80 object-cover z-10 relative">
+          <img src="@/assets/unnamed.jpg" alt="Meera" class="w-80 md:w-90 md:h-80 object-cover z-10 relative">
         </div>
       </div>
     </div>
   </div>
+  <SkillsComponent/>
 </template>
 
 <script>
+import SkillsComponent from './SkillsComponent.vue';
+
 export default {
-  name: 'HomeComponent'
+  name: 'HomeComponent',
+  components:{
+    SkillsComponent
+  }
 }
 </script>
 
 <style scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
-body {
-  background-color: #1F2226;
-}
+
 
 .figtree-extra-light {
   font-family: "Figtree", serif;

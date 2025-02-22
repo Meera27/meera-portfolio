@@ -53,8 +53,8 @@ export default {
   justify-content: center;
   align-items: center;
   height: 550px;
-  max-width: 450px; /* Add max-width to constrain card width */
-  margin: 0 auto; /* Center the card */
+  max-width: 450px;
+  margin: 0 auto; 
 }
 
 /* Ensure image fills the taller space */

@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-[#1E2024] text-white py-4 text-center">
+    <footer class="bg-[#1F2226] text-white py-4 text-center">
       <p class="text-lg">
         Coded from the ground up by  <span class="neon-blue"><b>Meera</b>  🖥️</span>
       </p>
