@@ -1,10 +1,12 @@
 <template>
   <div class="education-section">
     <div class="education-container">
-      <!-- Left Section (65%) -->
       <div class="left-section">
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
           <div v-for="(education, index) in educations" :key="index" class="timeline-item"
             :class="{ 'show': isVisible }">
+            <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="year text-[#00FFFF]">{{ education.year }}</span>
               <h3 class="institution text-xl font-bold mt-2 text-white">{{ education.institution }}</h3>
@@ -13,14 +15,9 @@
               <p class="description text-gray-400 mt-2">{{ education.description }}</p>
             </div>
           </div>
+        </div>
       </div>
-
-      <div class="timeline-container">
-        <div class="timeline-line"></div>
-        <div v-for="(education, index) in educations" :key="'dot-'+index" class="timeline-dot"></div>
-      </div>
-
-      <!-- Right Section (35%) -->
+      
       <div class="right-section">
         <h1 class="education-title figtree-extra-light text-4xl md:text-8xl font-bold text-white">
           education<span class="text-[#00FFFF]">.</span>
@@ -29,6 +26,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { ref, onMounted } from 'vue'
 
@@ -39,9 +37,9 @@ export default {
     const educations = ref([
       {
         year: '2023 - 2025',
-        institution: 'Langara College',
-        degree: 'Post Degree Diploma in Web and Mobile App Design and Development',
-        description: 'Currently pursuing advanced studies in modern web technologies and mobile application development.'
+        institution: 'Concordia University',
+        degree: 'M.Eng Software Engineering',
+        description: 'Currently pursuing Software Engineering studies in modern web technologies and mobile application development.'
       },
       {
         year: '2018 - 2022',
@@ -75,6 +73,15 @@ export default {
 </script>
 
 <style scoped>
+.education-section {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #1F2226;
+  padding: 4rem 0;
+  margin-top: 2%;
+  position: relative;
+}
+
 .education-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -83,7 +90,6 @@ export default {
   padding: 0 2rem;
   position: relative;
 }
-
 
 .left-section {
   width: 65%;
@@ -98,31 +104,31 @@ export default {
   animation: fadeIn 0.8s ease-out forwards;
 }
 
-.vertical-title {
-  transform: rotate(-90deg) translate(-50%, 0);
-  transform-origin: left;
-  position: fixed;
-  left: 100px;
-  top: 50%;
-}
-
 .timeline-container {
-  width: 2px;
   position: relative;
-  margin: 0 1rem;
+  padding-right: 1rem;
+  height: 100%;
 }
 
 .timeline-line {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 6px;
+  right: 16px;
+  /* top: 1.5rem; */
   width: 1px;
   height: 87%;
   background-color: #00FFFF;
   opacity: 0.7;
 }
 
+.timeline-item {
+  position: relative;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.6s ease-out;
+  padding-right: 3rem;
+  text-align: right;
+}
 
 .timeline-item.show {
   opacity: 1;
@@ -131,8 +137,8 @@ export default {
 
 .timeline-dot {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  right: -3.5px;
+  /* top: 1.5rem; */
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -142,9 +148,14 @@ export default {
 }
 
 .timeline-content {
-  padding: 0 0 1.5rem 1.5rem; 
+  padding: 0 0 1.5rem 1.5rem;
   border-radius: 8px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
+
 .year {
   font-size: 1.2rem;
   font-weight: bold;
@@ -153,66 +164,16 @@ export default {
 }
 
 .role-underline {
-  width: 50px;
+  width: 37em;
   height: 1px;
   background-color: #00FFFF;
   margin: 1rem 0;
   opacity: 0.7;
 }
 
-.nav-circle {
-  position: fixed;
-  left: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3rem;
-  height: 3rem;
-  border: 1px solid #00FFFF;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: rgba(31, 34, 38, 0.8);
-  z-index: 10;
-}
-
-.nav-circle:hover {
-  transform: translateY(-50%) scale(1.1);
-  background: rgba(0, 255, 255, 0.1);
-}
-
-.arrow-left {
-  width: 1rem;
-  height: 1px;
-  background: #00FFFF;
-  position: relative;
-  margin-right: -0.25rem;
-}
-
-.arrow-left::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: -2px;
-  width: 8px;
-  height: 1px;
-  background: #00FFFF;
-  transform: rotate(-45deg);
-  transform-origin: left;
-}
-
-.arrow-left::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 8px;
-  height: 1px;
-  background: #00FFFF;
-  transform: rotate(45deg);
-  transform-origin: left;
+.education-title {
+  text-align: right;
+  white-space: nowrap;
 }
 
 @keyframes fadeIn {
@@ -232,114 +193,55 @@ export default {
     width: 100%;
     padding: 0;
   }
-  .education-title {
-  text-align: right; 
-}
 
-.vertical-title {
-  transform: rotate(-90deg) translate(-50%, 0);
-  transform-origin: right;
-  position: fixed;
-  right: 100px; 
-  top: 50%;
-}
-
-  .timeline-container {
-    padding-left: 3rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-circle {
-    bottom: 2rem;
-    top: auto;
-    transform: none;
-  }
-
-  .nav-circle:hover {
-    transform: scale(1.1);
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-circle {
-    left: 1rem;
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
-  .arrow-left {
-    width: 0.8rem;
-  }
-}
-
-.timeline-dot:nth-child(2) { top: 6px; }
-.timeline-dot:nth-child(3) { top: 50%; }
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 4rem;
-  opacity: 0;
-  transform: translateX(-30px);
-  transition: all 0.6s ease-out;
-  text-align: right; /* Add right alignment */
-  padding-right: 2rem; /* Add padding on the right */
-}
-
-@media (max-width: 1300px) {
-  .education-container {
-    flex-direction: column-reverse;
-  }
-
-  .left-section,
   .right-section {
-    width: 100%;
-    padding: 0;
-  }
-
-  .education-title {
-    position: static;
-    transform: none;
-    text-align: right;
-    margin-bottom: 2rem;
-  }
-
-  .timeline-container {
-    width: 2px;
-    position: absolute;
-    left: 2rem; 
-    top: 0;
-    height: 100%;
-    margin: 0;
-  }
-
-  .timeline-line {
-    height: calc(100% - 2rem);
-  }
-
-  .timeline-dot {
-    left: 2rem;
-  }
-  .timeline-item {
-    transform: translateX(0);
-    padding-left: 4rem;
-    padding-right: 0; 
-    text-align: left;
     margin-bottom: 3rem;
   }
 
-  .timeline-content {
-    padding: 0 1.5rem 1.5rem 0;
+  .timeline-container {
+    padding-right: 3rem;
+  }
+
+  .timeline-line {
+    right: 48px;
+    height: calc(100% - 1.5rem);
+  }
+
+  .timeline-dot {
+    right: -3.5px;
+  }
+
+  .timeline-item {
+    padding-right: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .role-underline {
+    width: 100%;
+    max-width: 37em;
   }
 }
 
 @media (max-width: 768px) {
+  .education-section {
+    padding: 2rem 0;
+  }
+
   .timeline-container {
-    left: 1rem;
+    padding-right: 2rem;
   }
 
   .timeline-item {
-    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .role-underline {
+    max-width: 100%;
+    width: calc(100% - 4rem);
+  }
+
+  .education-title {
+    font-size: 2.5rem;
   }
 }
 </style>

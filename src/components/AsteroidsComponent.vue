@@ -1,7 +1,7 @@
 <template>
     <div class="asteroids-overlay">
         <div class="asteroids-container">
-            <div v-for="n in 300" :key="n" class="asteroid" :style="{
+            <div v-for="n in 50" :key="n" class="asteroid" :style="{
                 '--delay': `${Math.random() * 8}s`,
                 '--duration': `${6 + Math.random() * 8}s`,
                 '--top': `${Math.random() * 120 - 10}%`,

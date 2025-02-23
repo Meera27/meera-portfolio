@@ -80,7 +80,7 @@ export default {
 
 <style scoped>
 .experience-section {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   width: 100%;
   background-color: #1F2226;
   padding: 4rem 0;
