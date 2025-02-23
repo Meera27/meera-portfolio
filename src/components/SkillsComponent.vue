@@ -2,7 +2,7 @@
   <div class="skills-wrapper relative">
     <div class="skills-container flex flex-wrap justify-center gap-8 mt-3 p-8 relative z-10">
       <div class="w-full text-center md:text-left mb-12 skill-title">
-        <h1 class="figtree-extra-light text-4xl md:text-8xl font-bold mb-4 text-center">
+        <h1 class="figtree-extra-light text-4xl md:text-8xl font-bold mb-4 text-center" style ="color : white;">
         skills<span class="text-[#00FFFF]">.</span>
         </h1>
       </div>

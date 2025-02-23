@@ -2,7 +2,7 @@
   <div class="projects-section">
   <div class="projects-container">
           <div class="w-full text-center md:text-left mb-12 project-title">
-        <h1 class="figtree-extra-light text-4xl md:text-8xl font-bold mb-4 text-center">
+        <h1 class="figtree-extra-light text-4xl md:text-8xl font-bold mb-4 text-center" style ="color : white;">
           projects<span class="text-[#00FFFF]">.</span>
         </h1>
       </div>
