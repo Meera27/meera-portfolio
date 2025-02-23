@@ -1,60 +1,192 @@
 <template>
-    <div class="bg-[#1F2226] text-white py-16">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-12 text-center">My Journey</h2>
-        <div class="relative">
-          <!-- Horizontal line with dimming effect -->
-          <div class="absolute w-full h-1 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
+  <div class="experience-section">
+    <div class="experience-container">
+      <!-- Left Section (35%) -->
+      <div class="left-section">
+        <h1 class="experience-title figtree-extra-light text-4xl md:text-8xl font-bold">
+          experience
+        </h1>
+        <p class="experience-subtitle text-gray-400 mt-4">
+          Building digital experiences that matter.
+        </p>
+      </div>
+
+      <!-- Right Section (65%) with Timeline -->
+      <div class="right-section">
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
           
-          <!-- Timeline items -->
-          <div class="flex justify-between relative">
-            <div v-for="(item, index) in timelineItems" :key="index" 
-                 class="flex flex-col items-center" 
-                 :class="{'ml-0': index === 0, 'mr-0': index === timelineItems.length - 1}">
-              <!-- Time period -->
-              <div class="mb-4 text-sm">{{ item.period }}</div>
-              
-              <!-- Glowing dot -->
-              <div :class="`w-4 h-4 rounded-full ${item.type === 'education' ? 'bg-blue-500' : 'bg-green-500'} shadow-glow z-10 relative top-[10px]`"></div>
-              
-              <!-- Institution/Company name -->
-              <div :class="`mt-4 text-sm font-semibold ${item.type === 'education' ? 'text-blue-400' : 'text-green-400'}`">
-                {{ item.name }}
-              </div>
-              
-              <!-- Role -->
-              <div class="mt-2 text-xs text-gray-400">
-                {{ item.role }}
-              </div>
+          <!-- Experience Items -->
+          <div v-for="(experience, index) in experiences" 
+               :key="index" 
+               class="timeline-item"
+               :class="{ 'show': isVisible }">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="year text-[#00FFFF]">{{ experience.year }}</span>
+              <h3 class="company text-xl font-bold mt-2">{{ experience.company }}</h3>
+              <h4 class="role text-gray-300">{{ experience.role }}</h4>
+              <p class="description text-gray-400 mt-2">{{ experience.description }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'TimelineComponent',
-    data() {
-      return {
-        timelineItems: [
-          { period: '2016-2018', name: `St Mary's School`, type: 'education', role: 'Student' },
-          { period: '2018-2022', name: 'AJCE', type: 'education', role: 'Student' },
-          { period: '2022-2023', name: 'Cognizant', type: 'work', role: 'Intern' },
-          { period: '2023-Present', name: 'Concordia University', type: 'education', role: 'Student' },
-          {period: '2024-Present', name: 'FreshPrep', type: 'work', role: 'Full-Stack Developer Intern'}
-        ]
+  </div>
+</template>
+
+<script>
+import { ref, onMounted } from 'vue'
+
+export default {
+  name: 'ExperienceComponent',
+  setup() {
+    const isVisible = ref(false)
+    const experiences = ref([
+      {
+        year: '2023',
+        company: 'TCS',
+        role: 'Systems Engineer',
+        description: 'Working on developing and maintaining web applications using Angular and Spring Boot.'
+      },
+      {
+        year: '2022',
+        company: 'Infosys',
+        role: 'Systems Engineer',
+        description: 'Developed full-stack applications using MEAN stack and implemented CI/CD pipelines.'
       }
+    ])
+
+    onMounted(() => {
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              isVisible.value = true
+            }
+          })
+        },
+        { threshold: 0.1 }
+      )
+
+      const section = document.querySelector('.experience-section')
+      if (section) observer.observe(section)
+    })
+
+    return {
+      experiences,
+      isVisible
     }
   }
-  </script>
-  
-  <style scoped>
-  .shadow-glow {
-    box-shadow: 0 0 10px 2px currentColor;
+}
+</script>
+
+<style scoped>
+.experience-section {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #1F2226;
+  padding: 4rem 0;
+}
+.experience-title{
+  color:white;
+}
+
+.experience-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.left-section {
+  width: 35%;
+  padding-right: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.right-section {
+  width: 65%;
+  position: relative;
+}
+
+.timeline-container {
+  position: relative;
+  padding-left: 3rem;
+  height: 100%;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 10;
+  top: 0;
+  width: 1px;
+  height: 90%;
+  background-color: #00FFFF;
+  opacity: 0.7; 
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.6s ease-out;
+}
+
+.timeline-item.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -0.23rem; 
+  top: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #00FFFF;
+  border: 1px solid #1F2226; /* Thinner border */
+  box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.3); /* Softer glow */
+}
+
+.timeline-content {
+  padding: 1.5rem;
+  border-radius: 8px;}
+
+.year {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-container {
+    flex-direction: column;
   }
 
+  .left-section,
+  .right-section {
+    width: 100%;
+    padding-right: 0;
+  }
 
-  </style>
-  
+  .timeline-container {
+    padding-left: 3rem;
+  }
+
+  .timeline-dot {
+    left: -3.15rem;
+  }
+}
+</style>

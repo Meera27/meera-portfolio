@@ -1,18 +1,6 @@
 <template>
   <div class="project-card">
-    <img :src="projectImage" :alt="project.name" class="w-full h-full object-cover">
-    <div class="overlay">
-      <h3 class="project-title">{{ project.name }}</h3>
-      <div class="skills">
-        <span v-for="skill in project.skills" :key="skill" class="skill">
-          {{ skill }}
-        </span>
-      </div>
-      <p class="explanation">{{ truncatedExplanation }}</p>
-      <a :href="project.githubLink" target="_blank" rel="noopener noreferrer" class="github-button">
-        GitHub
-      </a>
-    </div>
+    <img :src="projectImage" :alt="project.name" class="project-image">
   </div>
 </template>
 
@@ -27,11 +15,7 @@ export default {
   },
   computed: {
     projectImage() {
-      try {
         return require(`@/assets/${this.project.image}`)
-      } catch (e) {
-        return require('@/assets/unnamed.jpg')
-      }
     },
     truncatedExplanation() {
       return this.project.explanation.length > 150
@@ -46,44 +30,21 @@ export default {
 .project-card {
   position: relative;
   overflow: hidden;
-  background-color: #262A2E;
-  border: 1px solid #444;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 600px;
-  max-width: 900px;
+  max-width: 1700px;
   margin: 0 auto; 
 }
 
-/* Ensure image fills the taller space */
 .project-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* Adjust overlay to match new height */
-.overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%; /* Reduce from 100% to 80% */
-  height: 100%;
-  margin: 0 auto; /* Center the overlay */
-  background-color: rgba(38, 42, 46, 0.9);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s;
-  left: 50%;
-  transform: translateX(-50%); /* Center horizontally */
-}
-
-.project-card:hover .overlay {
-  opacity: 1;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
 }
 
 .project-title {
@@ -124,6 +85,7 @@ export default {
   color: #00FFFF;
   border-color: #00FFFF;
 }
+
 
 @media (max-width: 1024px) { 
   .grid-container {

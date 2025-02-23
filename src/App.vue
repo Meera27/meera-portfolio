@@ -20,7 +20,7 @@
       <ProjectsComponent />
     </section>
 
-    <experience-component/> 
+    <ExperienceComponent/>
     <FooterComponent />   
     <SocialIcons/>
   </div>

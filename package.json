@@ -17,6 +17,7 @@
     "locomotive-scroll": "^4.1.4",
     "tailwind-fontawesome": "^0.7.1",
     "vue": "^3.4.38",
+    "vue-devicons": "^0.0.1",
     "vue-dragscroll": "^4.0.6",
     "vue-router": "^4.0.3"
   },

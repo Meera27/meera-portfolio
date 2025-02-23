@@ -1,8 +1,12 @@
 <template>
   <div class="projects-section">
   <div class="projects-container">
+          <div class="w-full text-center md:text-left mb-12 project-title">
+        <h1 class="figtree-extra-light text-4xl md:text-8xl font-bold mb-4 text-center">
+          projects<span class="text-[#00FFFF]">.</span>
+        </h1>
+      </div>
     <div class="grid-container">
-      <h2 class="projects-heading">PROJECTS</h2>
       <div v-for="(project, index) in projects" :key="project.id" :class="getGridClass(index)">
         <ProjectCard :project="project" />
       </div>
@@ -23,47 +27,33 @@ export default {
     return {
       projects: [
         {
-          name: "Personal Portfolio Website",
-          image: "portfolio.jpg",
-          skills: ["Vue.js", "TailwindCSS"],
-          explanation: `My Personal Portfolio website, built with Vue.js and Tailwind CSS, serves as a dynamic showcase of my professional journey. It brings together my skills, experiences, and projects, offering an interactive and visually appealing overview of my capabilities and achievements.`,
-          githubLink: ""
-        },
-        {
-          name: "READ",
-          image: "READ.webp",
+          name: "eyeT",
+          image: "eyes.avif",
           skills: ["Angular", "Nodejs", "Expressjs", "MongoDB", "RESTful APIs"],
           explanation: `Library management system that offers a smooth user interface and leverages AJAX for instant content updates. Also features an advanced system for managing books and integrates secure authentication to protect access. Uses Angular for immediate availability updates and is designed for scalability, ensuring easy feature expansion and maintenance.`,
           githubLink: "https://github.com/Meera27/LibraryApp-Angular"
         },
         {
           name: "VOIX",
-          image: "VOIX.webp",
+          image: "wave.jpg",
           skills: ["HTML5", "CSS3", "Javascript", "Nodejs", "MongoDB"],
           explanation: `VOIX is a voice-based email application designed to empower visually impaired users, offering advanced voice command functionality, comprehensive accessibility features, seamless cross-platform compatibility, and robust security protocols for a safe, private, and intuitive email experience.`,
           githubLink: "https://github.com/Meera27/Voix"
         },
         {
           name: "COMMUTE",
-          image: "COMMUTE.webp",
+          image: "commute.avif",
           skills: ["Angular", "Spring framework", "Microservice", "SQL", "RESTful APIs"],
           explanation: `A comprehensive trip reservation system that enhances user experience through AJAX-based asynchronous data updates, ensures scalability and flexibility through a microservices architecture. Prioritizes user data security with robust authentication and encryption protocols, all while being designed for future growth and seamless feature integration.`,
           githubLink: ""
         },
         {
           name: "DIGITAL DIARY",
-          image: "DIGITAL_DIARY.webp",
+          image: "diary.jpg",
           skills: ["Angular", "Nodejs", "Expressjs", "MongoDB", "RESTful APIs"],
           explanation: `This blog application combines a user-friendly interface, robust content moderation, and community engagement features. Its integration of RESTful APIs ensures smooth operations and scalability, promising an all-rounded and engaging blogging experience.`,
           githubLink: "https://github.com/Meera27/Digital-Diary"
         },
-        {
-          name: "READ",
-          image: "READ.webp",
-          skills: ["Angular", "Nodejs", "Expressjs", "MongoDB", "RESTful APIs"],
-          explanation: `Library management system that offers a smooth user interface and leverages AJAX for instant content updates. Also features an advanced system for managing books and integrates secure authentication to protect access. Uses Angular for immediate availability updates and is designed for scalability, ensuring easy feature expansion and maintenance.`,
-          githubLink: "https://github.com/Meera27/LibraryApp-Angular"
-        }
       ],
     }
   },
@@ -108,8 +98,8 @@ export default {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  max-width: 1600px;
+  gap: 9rem;
+  max-width: 1700px;
   margin: 0 auto;
   margin-top: 1.0rem;
   padding: 0 1rem;
@@ -117,7 +107,7 @@ export default {
 
 .left {
   grid-column: 1 / 2;
-  margin-top: 25rem; 
+  margin-top: 12rem; 
 }
 
 .right {

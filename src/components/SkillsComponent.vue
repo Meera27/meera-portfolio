@@ -1,10 +1,9 @@
 <template>
   <div class="skills-wrapper relative">
-
-    <div class="skills-container flex flex-wrap justify-center gap-8 mt-8 p-8 relative z-10">
+    <div class="skills-container flex flex-wrap justify-center gap-8 mt-3 p-8 relative z-10">
       <div class="w-full text-center md:text-left mb-12 skill-title">
         <h1 class="figtree-extra-light text-4xl md:text-8xl font-bold mb-4 text-center">
-          skills<span class="text-[#00FFFF]">.</span>
+        skills<span class="text-[#00FFFF]">.</span>
         </h1>
       </div>
       <div v-for="(category, categoryName) in skillCategories" :key="categoryName" class="w-full category-section">
@@ -12,11 +11,12 @@
           <div v-for="(skill, index) in category" :key="index" class="skill-item"
             :style="{ animationDelay: `${index * 0.2}s` }">
             <button
-              class="skill-button relative inline-flex items-center justify-center text-lg font-bold text-white transition-all duration-200 bg-[#1F2226] rounded-md focus:outline-none hover:text-white border-2 border-[#00FFFF] overflow-hidden">
+              class="skill-button relative inline-flex items-center justify-center text-lg font-bold transition-all duration-200 bg-[#1F2226] rounded-md focus:outline-none border-2 border-[#00FFFF] overflow-hidden">
               <div class="wave-fill"></div>
               <div class="relative z-10">
-                <font-awesome-icon :icon="skill.icon" class="text-3xl" />
+                <font-awesome-icon :icon="skill.icon" class="text-3xl" :style="{ color: getIconColor(skill.name) }" />
               </div>
+              <span class="ml-2 text-white">{{ skill.name }}</span>
             </button>
           </div>
         </div>
@@ -29,13 +29,30 @@
 import { onMounted, ref } from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faJava, faPython, faJs, faNode, faAngular, faVuejs, faReact, faHtml5, faBootstrap, faCss3, faDocker, faGit, faJira, faFigma, faBitbucket } from '@fortawesome/free-brands-svg-icons'
-import { faDatabase, faServer, faCode, faGears, faWind } from '@fortawesome/free-solid-svg-icons'
+import { 
+  faJava, 
+  faPython, 
+  faJs, 
+  faNodeJs, 
+  faAngular, 
+  faVuejs, 
+  faReact, 
+  faHtml5, 
+  faCss3Alt, 
+  faDocker, 
+  faGitAlt 
+} from '@fortawesome/free-brands-svg-icons'
+import { 
+  faDatabase, 
+  faServer, 
+  faGears 
+} from '@fortawesome/free-solid-svg-icons'
 
-library.add(faJava, faPython, faJs, faNode, faAngular, faVuejs,
-  faReact, faHtml5, faBootstrap, faCss3, faDocker,
-  faGit, faJira, faFigma, faDatabase, faServer,
-  faCode, faGears, faBitbucket, faWind
+// Add icons to library
+library.add(
+  faJava, faPython, faJs, faNodeJs, faAngular, 
+  faVuejs, faReact, faHtml5, faCss3Alt, faDocker, 
+  faGitAlt, faDatabase, faServer, faGears
 )
 
 export default {
@@ -44,6 +61,26 @@ export default {
     FontAwesomeIcon
   },
   setup() {
+    const getIconColor = (skillName) => {
+      const colorMap = {
+        'Java': '#f89820',
+        'Python': '#4B8BBE',
+        'MySQL': '#00758F',
+        'MongoDB': '#4DB33D',
+        'PostgreSQL': '#336791',
+        'Angular': '#DD0031',
+        'Vue.js': '#41B883',
+        'React.js': '#61DAFB',
+        'TailwindCSS': '#38B2AC',
+        'Node.js': '#339933',
+        'Express.js': '#000000',
+        'Docker': '#2496ED',
+        'Git': '#F05032',
+        'Spring Framework': '#6DB33F'
+      }
+      return colorMap[skillName] || '#00FFFF'
+    }
+
     const skillCategories = ref({
       'Programming Languages': [
         { name: 'Java', icon: ['fab', 'java'] },
@@ -58,18 +95,17 @@ export default {
         { name: 'Angular', icon: ['fab', 'angular'] },
         { name: 'Vue.js', icon: ['fab', 'vuejs'] },
         { name: 'React.js', icon: ['fab', 'react'] },
-        { name: 'TailwindCSS', icon: ['fas', 'wind'] }
+        { name: 'TailwindCSS', icon: ['fab', 'css3-alt'] }
       ],
       'Backend & Frameworks': [
         { name: 'Spring Framework', icon: ['fas', 'gears'] },
-        { name: 'Node.js', icon: ['fab', 'node'] },
-        { name: 'Express.js', icon: ['fas', 'server'] },
-        { name: 'Ruby on Rails', icon: ['fas', 'server'] },
+        { name: 'Node.js', icon: ['fab', 'node-js'] },
+        { name: 'Express.js', icon: ['fas', 'server'] }
       ],
       'Tools & Technologies': [
         { name: 'Docker', icon: ['fab', 'docker'] },
-        { name: 'Git', icon: ['fab', 'git'] },
-        { name: 'CI/CD Pipelines', icon: ['fas', 'gears'] },
+        { name: 'Git', icon: ['fab', 'git-alt'] },
+        { name: 'CI/CD Pipelines', icon: ['fas', 'gears'] }
       ]
     })
 
@@ -99,7 +135,8 @@ export default {
     })
 
     return {
-      skillCategories
+      skillCategories,
+      getIconColor
     }
   }
 }
@@ -110,6 +147,7 @@ export default {
   width: 100%;
   padding: 2rem;
 }
+
 .skill-title {
   opacity: 0;
   transform: translateY(50px);
@@ -157,6 +195,7 @@ export default {
   opacity: 1;
   transform: translateY(0);
 }
+
 .skill-title:not(.show) {
   opacity: 0;
   transform: translateY(-50px);
@@ -188,7 +227,15 @@ export default {
   border-width: 3px;
 }
 
-/* Fade out animations */
+.skill-button:hover .font-awesome-icon {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+.wave-fill {
+  opacity: 0.1;
+}
+
 .category-section:not(.show) {
   opacity: 0;
   transform: translateY(-30px);
