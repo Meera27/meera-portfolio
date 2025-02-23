@@ -21,6 +21,7 @@
     </section>
 
     <ExperienceComponent/>
+    <EducationComponent/>
     <FooterComponent />   
     <SocialIcons/>
   </div>
@@ -30,6 +31,7 @@
 <script>
 
 import AsteroidsComponent from './components/AsteroidsComponent.vue';
+import EducationComponent from './components/EducationComponent.vue';
 import ExperienceComponent from './components/ExperienceComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
 import HomeComponent from './components/HomeComponent.vue';
@@ -48,6 +50,7 @@ export default({
     HomeComponent,
     ProjectsComponent,
     ExperienceComponent,
+    EducationComponent,
     AsteroidsComponent,
     FooterComponent,
     SocialIcons
