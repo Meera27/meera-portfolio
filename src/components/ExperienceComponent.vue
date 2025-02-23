@@ -1,31 +1,28 @@
 <template>
   <div class="experience-section">
     <div class="experience-container">
-      <!-- Left Section (35%) -->
       <div class="left-section">
-        <h1 class="experience-title figtree-extra-light text-4xl md:text-8xl font-bold">
-          experience
-        </h1>
+        <div class="vertical-title">
+          <h1 class="experience-title figtree-extra-light text-4xl md:text-8xl font-bold">
+            experience<span class="text-[#00FFFF]">.</span>
+          </h1>
+        </div>
         <p class="experience-subtitle text-gray-400 mt-4">
           Building digital experiences that matter.
         </p>
       </div>
-
-      <!-- Right Section (65%) with Timeline -->
       <div class="right-section">
         <div class="timeline-container">
           <div class="timeline-line"></div>
-          
-          <!-- Experience Items -->
-          <div v-for="(experience, index) in experiences" 
-               :key="index" 
-               class="timeline-item"
-               :class="{ 'show': isVisible }">
+
+          <div v-for="(experience, index) in experiences" :key="index" class="timeline-item"
+            :class="{ 'show': isVisible }">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="year text-[#00FFFF]">{{ experience.year }}</span>
               <h3 class="company text-xl font-bold mt-2">{{ experience.company }}</h3>
               <h4 class="role text-gray-300">{{ experience.role }}</h4>
+              <div class="role-underline"></div>
               <p class="description text-gray-400 mt-2">{{ experience.description }}</p>
             </div>
           </div>
@@ -44,15 +41,15 @@ export default {
     const isVisible = ref(false)
     const experiences = ref([
       {
-        year: '2023',
-        company: 'TCS',
-        role: 'Systems Engineer',
+        year: '2024',
+        company: 'Fresh Prep',
+        role: 'Software Developer Intern',
         description: 'Working on developing and maintaining web applications using Angular and Spring Boot.'
       },
       {
         year: '2022',
-        company: 'Infosys',
-        role: 'Systems Engineer',
+        company: 'Cognizant Technology Solutions',
+        role: 'CSD Intern',
         description: 'Developed full-stack applications using MEAN stack and implemented CI/CD pipelines.'
       }
     ])
@@ -87,9 +84,12 @@ export default {
   width: 100%;
   background-color: #1F2226;
   padding: 4rem 0;
+  margin-top: 6%;
 }
-.experience-title{
-  color:white;
+
+.experience-title {
+  color: white;
+  white-space: nowrap;
 }
 
 .experience-container {
@@ -115,18 +115,18 @@ export default {
 
 .timeline-container {
   position: relative;
-  padding-left: 3rem;
+  padding-left: 1rem;
   height: 100%;
 }
 
 .timeline-line {
   position: absolute;
   left: 10;
-  top: 0;
+  top: 6px;
   width: 1px;
-  height: 90%;
+  height: 87%;
   background-color: #00FFFF;
-  opacity: 0.7; 
+  opacity: 0.7;
 }
 
 .timeline-item {
@@ -135,6 +135,7 @@ export default {
   opacity: 0;
   transform: translateX(30px);
   transition: all 0.6s ease-out;
+  padding-left: 2rem;
 }
 
 .timeline-item.show {
@@ -144,23 +145,37 @@ export default {
 
 .timeline-dot {
   position: absolute;
-  left: -0.23rem; 
-  top: 0;
+  left: -3.5px;
+  top: 6px;
   width: 9px;
   height: 9px;
   border-radius: 50%;
   background-color: #00FFFF;
-  border: 1px solid #1F2226; /* Thinner border */
-  box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.3); /* Softer glow */
+  border: 1px solid #1F2226;
+  /* Thinner border */
+  box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.3);
+  /* Softer glow */
 }
 
+.role-underline {
+  width: 37em;
+  height: 1px;
+  background-color: #00FFFF;
+  margin: 1rem 0;
+  opacity: 0.7;
+}
+
+
 .timeline-content {
-  padding: 1.5rem;
-  border-radius: 8px;}
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  border-radius: 8px;
+}
 
 .year {
   font-size: 1.2rem;
   font-weight: bold;
+  display: inline-block;
+  margin-bottom: 1rem;
 }
 
 @keyframes fadeIn {
@@ -170,7 +185,7 @@ export default {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
   .experience-container {
     flex-direction: column;
   }
@@ -186,7 +201,11 @@ export default {
   }
 
   .timeline-dot {
-    left: -3.15rem;
+    left: -3.5px;
+  }
+
+  .timeline-item {
+    padding-left: 1.5rem;
   }
 }
 </style>
