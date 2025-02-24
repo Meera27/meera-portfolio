@@ -5,27 +5,23 @@
         <!-- Location Section -->
         <div class="text-center md:text-left">
           <div class="flex items-center justify-center md:justify-start gap-2 text-gray-400">
-            <i class="fas fa-map-marker-alt text-cyan"></i>
+            <i class="fas fa-map-marker-alt text-[#00FFFF]"></i>
             <span>Montreal, QC, Canada</span>
           </div>
           <div class="flex items-center justify-center md:justify-start gap-2 mt-2 text-gray-400">
-            <i class="fas fa-globe text-cyan"></i>
+            <i class="fas fa-globe text-[#00FFFF]"></i>
             <span>45.5017° N, 73.5673° W</span>
           </div>
           <div class="flex items-center justify-center md:justify-start gap-2 mt-2 text-gray-400">
-            <i class="far fa-clock text-cyan"></i>
+            <i class="far fa-clock text-[#00FFFF]"></i>
             <span>EST (UTC-5)</span>
           </div>
         </div>
 
-        <!-- Contact Section -->
+        <!-- Contact Section with Social Icons -->
         <div class="text-center">
-          <h2 class="text-2xl font-bold mb-3">Contact Me</h2>
-          <a href="mailto:muraleedharannairmeera@gmail.com" 
-             class="text-[#00FFFF] hover:opacity-80 transition-all duration-300 flex items-center justify-center gap-2">
-            <i class="fas fa-envelope"></i>
-            <span class="text-sm">muraleedharannairmeera@gmail.com</span>
-          </a>
+          <h2 class="text-2xl font-bold mb-4">Contact Me</h2>
+          <SocialIcons :in-footer="true" />
         </div>
 
         <!-- Copyright -->
@@ -34,13 +30,24 @@
             Coded from the ground up by <span class="neon-blue"><b>Meera</b> 🖥️</span>
           </p>
           <p class="text-xs text-gray-400">
-            © 2024 All rights reserved
+            © 2025 All rights reserved
           </p>
         </div>
       </div>
     </div>
   </footer>
 </template>
+
+<script>
+import SocialIcons from './SocialIcons.vue'
+
+export default {
+  name: 'FooterComponent',
+  components: {
+    SocialIcons
+  }
+}
+</script>
 
 <style scoped>
 .neon-blue {

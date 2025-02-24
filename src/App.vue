@@ -1,6 +1,7 @@
 <template>
 
   <div id="app">
+    <SocialIcons :in-footer="false" />
     <AsteroidsComponent />
     <NavBarComponent />
     
@@ -23,7 +24,6 @@
     <ExperienceComponent/>
     <EducationComponent/>
     <FooterComponent />   
-    <SocialIcons/>
   </div>
 
 </template>
