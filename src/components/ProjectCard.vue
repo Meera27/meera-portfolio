@@ -1,6 +1,15 @@
 <template>
   <div class="project-card">
-    <img :src="projectImage" :alt="project.name" class="project-image">
+    <div class="image-container">
+      
+      <img :src="projectImage" :alt="project.name" class="project-image">
+    </div>
+    <div class="project-info">
+      <div class="project-details">
+        <h3 class="project-name">{{ project.name }}</h3>
+        <p class="project-type">— {{ getProjectType(project.name) }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,12 +24,23 @@ export default {
   },
   computed: {
     projectImage() {
-        return require(`@/assets/${this.project.image}`)
-    },
-    truncatedExplanation() {
-      return this.project.explanation.length > 150
-        ? this.project.explanation.slice(0, 150) + '...'
-        : this.project.explanation;
+      try {
+        return require(`@/assets/${this.project.image}`);
+      } catch (e) {
+        console.error(`Image not found: ${this.project.image}`, e);
+        return ''; 
+      }
+    }
+  },
+  methods: {
+    getProjectType(name) {
+      const types = {
+        'eyeT': 'Library Management System',
+        'VOIX': 'Voice Email Application',
+        'COMMUTE': 'Trip Reservation System',
+        'DIGITAL DIARY': 'Blog Application'
+      };
+      return types[name] || 'Project';
     }
   }
 }
@@ -29,115 +49,99 @@ export default {
 <style scoped>
 .project-card {
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 600px;
+  height: auto;
   max-width: 1700px;
   margin: 0 auto; 
 }
 
-.project-card img {
+.image-container {
+  overflow: hidden;
+  height: 580px;
+  border-radius: 4px;
+}
+
+.project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: grayscale(100%);
-  transition: filter 0.3s ease;
+  transition: filter 0.3s ease, transform 0.5s ease;
 }
 
-.project-title {
-  font-size: 1.5rem;
-  color: white;
+.project-card:hover .project-image {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+.project-info {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem 1rem 0;
+  background: transparent;
+}
+
+.project-line {
+  width: 100%;
+  height: 1px;
+  background-color: #00FFFF;
   margin-bottom: 1rem;
+  opacity: 0.7;
 }
 
-.skills {
+.project-details {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top :-2%;
 }
 
-.skill {
-  background-color: #444;
-  color: #00FFFF;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-}
-
-.explanation {
+.project-name {
+  font-size: 1.5rem;
+  font-weight: 600;
   color: white;
-  text-align: center;
-  margin-bottom: 1rem;
+  margin: 0;
 }
 
-.github-button {
+.project-type {
+  font-size: 1rem;
   color: white;
-  text-decoration: none;
-  border-bottom: 1px solid #00FFFF;
-  transition: color 0.3s, border-color 0.3s;
-}
-
-.github-button:hover {
-  color: #00FFFF;
-  border-color: #00FFFF;
-}
-
-
-@media (max-width: 1024px) { 
-  .grid-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 700px;
-    padding: 0 2rem;
-  }
-
-  .left, .right {
-    grid-column: 1;
-    margin-top: 2rem;
-  }
-
-  .left:first-child {
-    margin-top: 0;
-  }
+  margin: 0;
 }
 
 @media (max-width: 1024px) {
-  .project-card {
-    height: 400px;
+  .image-container {
+    height: 350px;
   }
-
-  .project-title {
+  
+  .project-name {
     font-size: 1.25rem;
   }
-
-  .explanation {
-    font-size: 0.9rem;
-    padding: 0 1rem;
-  }
-
-  .skills {
-    gap: 0.25rem;
-  }
-
-  .skill {
-    padding: 0.15rem 0.35rem;
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 1024px) {
-  .project-card {
-    height: 500px;
+  
+  .project-type {
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 768px) {
-  .project-card {
-    height: 400px;
+  .image-container {
+    height: 250px;
+  }
+  
+  .project-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .project-name {
+    font-size: 1.2rem;
+  }
+  
+  .project-type {
+    font-size: 0.8rem;
   }
 }
 </style>

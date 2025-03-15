@@ -1,17 +1,17 @@
 <template>
   <div class="projects-section">
-  <div class="projects-container">
-          <div class="w-full text-center md:text-left mb-12 project-title">
-        <h1 class="figtree-extra-light text-4xl md:text-8xl font-bold mb-4 text-center" style ="color : white;">
+    <div class="projects-container">
+      <div class="w-full text-center md:text-left mb-12 project-title">
+        <h1 class="figtree-extra-light text-4xl md:text-8xl font-bold mb-4 text-center" style="color: white;">
           projects<span class="text-[#00FFFF]">.</span>
         </h1>
       </div>
-    <div class="grid-container">
-      <div v-for="(project, index) in projects" :key="project.id" :class="getGridClass(index)">
-        <ProjectCard :project="project" />
+      <div class="grid-container">
+        <div v-for="(project, index) in projects" :key="index" :class="getGridClass(index)">
+          <ProjectCard :project="project" />
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -45,7 +45,7 @@ export default {
           image: "commute.avif",
           skills: ["Angular", "Spring framework", "Microservice", "SQL", "RESTful APIs"],
           explanation: `A comprehensive trip reservation system that enhances user experience through AJAX-based asynchronous data updates, ensures scalability and flexibility through a microservices architecture. Prioritizes user data security with robust authentication and encryption protocols, all while being designed for future growth and seamless feature integration.`,
-          githubLink: ""
+          githubLink: "https://github.com/Meera27/Commute"
         },
         {
           name: "DIGITAL DIARY",

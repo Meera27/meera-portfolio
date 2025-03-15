@@ -1,28 +1,25 @@
 <template>
-  <div class="experience-section">
+  <div class="experience-section" ref="experienceSection">
     <div class="experience-container">
-      <div class="left-section">
+      <div class="left-section" :class="{ 'animate': isVisible }">
         <div class="vertical-title">
           <h1 class="experience-title figtree-extra-light text-4xl md:text-8xl font-bold">
             experience<span class="text-[#00FFFF]">.</span>
           </h1>
         </div>
-        <p class="experience-subtitle text-gray-400 mt-4">
-          Building digital experiences that matter.
-        </p>
       </div>
       <div class="right-section">
         <div class="timeline-container">
-          <div class="timeline-line"></div>
+          <div class="timeline-line" :class="{ 'animate': isVisible }"></div>
 
           <div v-for="(experience, index) in experiences" :key="index" class="timeline-item"
-            :class="{ 'show': isVisible }">
-            <div class="timeline-dot"></div>
+            :class="{ 'show': isVisible }" :style="{ '--i': index + 1 }">
+            <div class="timeline-dot" :class="{ 'animate': isVisible }"></div>
             <div class="timeline-content">
               <span class="year text-[#00FFFF]">{{ experience.year }}</span>
               <h3 class="company text-xl font-bold mt-2">{{ experience.company }}</h3>
               <h4 class="role text-gray-300">{{ experience.role }}</h4>
-              <div class="role-underline"></div>
+              <div class="role-underline" :class="{ 'animate': isVisible }"></div>
               <p class="description text-gray-400 mt-2">{{ experience.description }}</p>
             </div>
           </div>
@@ -39,6 +36,7 @@ export default {
   name: 'ExperienceComponent',
   setup() {
     const isVisible = ref(false)
+    const experienceSection = ref(null)
     const experiences = ref([
       {
         year: '2024',
@@ -66,13 +64,15 @@ export default {
         { threshold: 0.1 }
       )
 
-      const section = document.querySelector('.experience-section')
-      if (section) observer.observe(section)
+      if (experienceSection.value) {
+        observer.observe(experienceSection.value)
+      }
     })
 
     return {
       experiences,
-      isVisible
+      isVisible,
+      experienceSection
     }
   }
 }
@@ -80,11 +80,12 @@ export default {
 
 <style scoped>
 .experience-section {
-  /* min-height: 100vh; */
+  min-height: 100vh;
   width: 100%;
   background-color: #1F2226;
   padding: 4rem 0;
   margin-top: 6%;
+  position: relative;
 }
 
 .experience-title {
@@ -98,6 +99,7 @@ export default {
   display: flex;
   gap: 2rem;
   padding: 0 2rem;
+  position: relative;
 }
 
 .left-section {
@@ -105,7 +107,13 @@ export default {
   padding-right: 2rem;
   opacity: 0;
   transform: translateY(30px);
-  animation: fadeIn 0.8s ease-out forwards;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.left-section.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
 }
 
 .right-section {
@@ -121,12 +129,19 @@ export default {
 
 .timeline-line {
   position: absolute;
-  left: 10;
   top: 6px;
   width: 1px;
   height: 87%;
   background-color: #00FFFF;
   opacity: 0.7;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1s ease-out;
+}
+
+.timeline-line.animate {
+  transform: scaleY(1);
+  transition-delay: 0.5s;
 }
 
 .timeline-item {
@@ -141,6 +156,7 @@ export default {
 .timeline-item.show {
   opacity: 1;
   transform: translateX(0);
+  transition-delay: calc(0.2s * var(--i, 1));
 }
 
 .timeline-dot {
@@ -152,9 +168,16 @@ export default {
   border-radius: 50%;
   background-color: #00FFFF;
   border: 1px solid #1F2226;
-  /* Thinner border */
   box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.3);
-  /* Softer glow */
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.timeline-dot.animate {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: calc(0.6s + (0.2s * var(--i, 1)));
 }
 
 .role-underline {
@@ -163,8 +186,15 @@ export default {
   background-color: #00FFFF;
   margin: 1rem 0;
   opacity: 0.7;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s ease-out;
 }
 
+.role-underline.animate {
+  transform: scaleX(1);
+  transition-delay: calc(0.8s + (0.2s * var(--i, 1)));
+}
 
 .timeline-content {
   padding: 0 1.5rem 1.5rem 1.5rem;
@@ -182,6 +212,33 @@ export default {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes scaleRight {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -206,6 +263,21 @@ export default {
 
   .timeline-item {
     padding-left: 1.5rem;
+  }
+  
+  .role-underline {
+    width: 100%;
+    max-width: 37em;
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-section {
+    padding: 2rem 0;
+  }
+  
+  .experience-title {
+    font-size: 2.5rem;
   }
 }
 </style>
