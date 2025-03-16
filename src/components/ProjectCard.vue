@@ -1,8 +1,9 @@
 <template>
-  <div class="project-card">
+  <div class="project-card" ref="projectCard">
     <div class="image-container">
-      
-      <img :src="projectImage" :alt="project.name" class="project-image">
+      <a :href="project.githubLink" target="_blank">
+        <img :src="projectImage" :alt="project.name" class="project-image">
+      </a>
     </div>
     <div class="project-info">
       <div class="project-details">
@@ -14,33 +15,84 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
 export default {
   name: 'ProjectCard',
   props: {
     project: {
       type: Object,
       required: true
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   },
-  computed: {
-    projectImage() {
-      try {
-        return require(`@/assets/${this.project.image}`);
-      } catch (e) {
-        console.error(`Image not found: ${this.project.image}`, e);
-        return ''; 
+  setup(props) {
+    const projectCard = ref(null)
+    let observer = null
+    let lastScrollPosition = 0
+    let scrollingDown = ref(true)
+    
+    const handleScroll = () => {
+      const currentScrollPosition = window.scrollY
+      scrollingDown.value = currentScrollPosition > lastScrollPosition
+      lastScrollPosition = currentScrollPosition
+    }
+    
+    onMounted(() => {
+      window.addEventListener('scroll', handleScroll)
+      
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate')
+            entry.target.classList.remove('animate-out')
+          } else {
+            entry.target.classList.remove('animate')
+            entry.target.classList.add('animate-out')
+          }
+        })
+      }, { 
+        threshold: 0.15,
+        rootMargin: '-50px 0px' 
+      })
+      
+      if (projectCard.value) {
+        observer.observe(projectCard.value)
       }
-    }
-  },
-  methods: {
-    getProjectType(name) {
+    })
+    
+    onBeforeUnmount(() => {
+      if (observer && projectCard.value) {
+        observer.unobserve(projectCard.value)
+      }
+      window.removeEventListener('scroll', handleScroll)
+    })
+    
+    const getProjectType = (name) => {
       const types = {
         'eyeT': 'Library Management System',
         'VOIX': 'Voice Email Application',
         'COMMUTE': 'Trip Reservation System',
         'DIGITAL DIARY': 'Blog Application'
-      };
-      return types[name] || 'Project';
+      }
+      return types[name] || 'Project'
+    }
+    
+    return {
+      projectCard,
+      getProjectType,
+      projectImage: computed(() => {
+        try {
+          return require(`@/assets/${props.project.image}`)
+        } catch (e) {
+          console.error(`Image not found: ${props.project.image}`, e)
+          return ''
+        }
+      })
     }
   }
 }
@@ -53,7 +105,53 @@ export default {
   flex-direction: column;
   height: auto;
   max-width: 1700px;
-  margin: 0 auto; 
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: transform, opacity;
+}
+
+.project-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(0.1s * v-bind(index));
+}
+
+.project-card.animate-out {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.left .project-card {
+  transform: translateX(-50px);
+}
+
+.left .project-card.animate {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: calc(0.1s * v-bind(index));
+}
+
+.left .project-card.animate-out {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.right .project-card {
+  transform: translateX(50px);
+}
+
+.right .project-card.animate {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: calc(0.1s * v-bind(index));
+}
+
+.right .project-card.animate-out {
+  opacity: 0;
+  transform: translateX(30px);
 }
 
 .image-container {
@@ -82,20 +180,12 @@ export default {
   background: transparent;
 }
 
-.project-line {
-  width: 100%;
-  height: 1px;
-  background-color: #00FFFF;
-  margin-bottom: 1rem;
-  opacity: 0.7;
-}
-
 .project-details {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-top :-2%;
+  margin-top: -2%;
 }
 
 .project-name {

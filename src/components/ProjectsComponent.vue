@@ -2,13 +2,13 @@
   <div class="projects-section">
     <div class="projects-container">
       <div class="w-full text-center md:text-left mb-12 project-title">
-        <h1 class="figtree-extra-light text-4xl md:text-8xl font-bold mb-4 text-center" style="color: white;">
+        <h1 class="figtree-extra-light text-4xl md:text-7xl font-bold mb-4 text-center animate-title" style="color: white;" ref="projectsTitle">
           projects<span class="text-[#00FFFF]">.</span>
         </h1>
       </div>
       <div class="grid-container">
         <div v-for="(project, index) in projects" :key="index" :class="getGridClass(index)">
-          <ProjectCard :project="project" />
+          <ProjectCard :project="project" :index="index" />
         </div>
       </div>
     </div>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue'
 import ProjectCard from './ProjectCard.vue'
 
 export default {
@@ -23,38 +24,41 @@ export default {
   components: {
     ProjectCard
   },
-  data() {
+  setup() {
+    const projectsTitle = ref(null)
+    
+    onMounted(() => {
+      setTimeout(() => {
+        if (projectsTitle.value) {
+          projectsTitle.value.classList.add('show')
+        }
+      }, 300)
+    })
+    
     return {
+      projectsTitle,
       projects: [
         {
           name: "eyeT",
           image: "eyes.avif",
-          skills: ["Angular", "Nodejs", "Expressjs", "MongoDB", "RESTful APIs"],
-          explanation: `Library management system that offers a smooth user interface and leverages AJAX for instant content updates. Also features an advanced system for managing books and integrates secure authentication to protect access. Uses Angular for immediate availability updates and is designed for scalability, ensuring easy feature expansion and maintenance.`,
-          githubLink: "https://github.com/Meera27/LibraryApp-Angular"
+          githubLink: "https://github.com/Meera27/eyeT"
         },
         {
           name: "VOIX",
           image: "wave.jpg",
-          skills: ["HTML5", "CSS3", "Javascript", "Nodejs", "MongoDB"],
-          explanation: `VOIX is a voice-based email application designed to empower visually impaired users, offering advanced voice command functionality, comprehensive accessibility features, seamless cross-platform compatibility, and robust security protocols for a safe, private, and intuitive email experience.`,
           githubLink: "https://github.com/Meera27/Voix"
         },
         {
           name: "COMMUTE",
           image: "commute.avif",
-          skills: ["Angular", "Spring framework", "Microservice", "SQL", "RESTful APIs"],
-          explanation: `A comprehensive trip reservation system that enhances user experience through AJAX-based asynchronous data updates, ensures scalability and flexibility through a microservices architecture. Prioritizes user data security with robust authentication and encryption protocols, all while being designed for future growth and seamless feature integration.`,
           githubLink: "https://github.com/Meera27/Commute"
         },
         {
           name: "DIGITAL DIARY",
           image: "diary.jpg",
-          skills: ["Angular", "Nodejs", "Expressjs", "MongoDB", "RESTful APIs"],
-          explanation: `This blog application combines a user-friendly interface, robust content moderation, and community engagement features. Its integration of RESTful APIs ensures smooth operations and scalability, promising an all-rounded and engaging blogging experience.`,
           githubLink: "https://github.com/Meera27/Digital-Diary"
-        },
-      ],
+        }
+      ]
     }
   },
   methods: {
@@ -68,7 +72,7 @@ export default {
 <style scoped>
 .projects-section {
   min-height: 100vh;
-  width: 100;
+  width: 100%;
   padding: 4rem 0;
   position: relative; 
 }
@@ -81,17 +85,15 @@ export default {
   padding: 2rem;
 }
 
-.projects-heading {
-  position: absolute;
-  color: #00FFFF;
-  font-size: 2.5rem;
-  font-weight: 100;
-  font-family: "Fira Sans", sans-serif;
-  letter-spacing: 0.1em;
-  left: 30rem; 
-  top: 2rem;
-  margin-bottom: 4rem; 
-  z-index: 10;
+.animate-title {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-title.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .grid-container {
@@ -142,5 +144,4 @@ export default {
     margin-top: 1rem;
   }
 }
-
 </style>
