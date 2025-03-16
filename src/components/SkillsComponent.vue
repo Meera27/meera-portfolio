@@ -1,9 +1,12 @@
 <template>
   <div class="skills-wrapper relative">
     <div class="skills-container flex flex-wrap justify-center gap-1 mt-3 p-6 relative z-10">
-      <div class="w-full text-center md:text-left mb-8 skill-title">
+      <div class="w-full text-center md:text-left mb-8 skill-title" ref="skillsTitle">
         <h1 class="figtree-extra-light text-4xl md:text-7xl font-bold mb-3 text-center" style="color: white;">
-          skills<span class="text-[#00FFFF]">.</span>
+          <span class="letter" v-for="(letter, index) in 'skills'.split('')" :key="index" :style="{ 'animation-delay': `${index * 0.1}s` }">
+            {{ letter }}
+          </span>
+          <span class="letter text-[#00FFFF] dot-animation">.</span>
         </h1>
       </div>
       <div v-for="(category, categoryName) in skillCategories" :key="categoryName" class="w-full category-section mb-4">
@@ -48,7 +51,6 @@ import {
   faGears 
 } from '@fortawesome/free-solid-svg-icons'
 
-// Add icons to library
 library.add(
   faJava, faPython, faJs, faNodeJs, faAngular, 
   faVuejs, faReact, faHtml5, faCss3Alt, faDocker, 
@@ -61,6 +63,8 @@ export default {
     FontAwesomeIcon
   },
   setup() {
+    const skillsTitle = ref(null)
+
     const getIconColor = (skillName) => {
       const colorMap = {
         'Java': '#f89820',
@@ -109,6 +113,19 @@ export default {
     })
 
     onMounted(() => {
+      setTimeout(() => {
+        if (skillsTitle.value) {
+          skillsTitle.value.classList.add('show')
+          
+          setTimeout(() => {
+            const dotElement = document.querySelector('.skills-wrapper .dot-animation')
+            if (dotElement) {
+              dotElement.classList.add('animate-dot')
+            }
+          }, 1200)
+        }
+      }, 300)
+
       const observerOptions = {
         threshold: 0.2,
         rootMargin: '-50px 0px'
@@ -127,12 +144,13 @@ export default {
       const wrapper = document.querySelector('.skills-wrapper')
       if (wrapper) observer.observe(wrapper)
 
-      document.querySelectorAll('.skill-title,.category-section, .skill-item, .category-title').forEach((item) => {
+      document.querySelectorAll('.category-section, .skill-item, .category-title').forEach((item) => {
         observer.observe(item)
       })
     })
 
     return {
+      skillsTitle,
       skillCategories,
       getIconColor
     }
@@ -148,15 +166,62 @@ export default {
   margin: 0 auto;
 }
 
+.letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeLetterIn 0.6s forwards ease-out;
+  animation-play-state: paused;
+}
+
+.skill-title.show .letter {
+  animation-play-state: running;
+}
+
+@keyframes fadeLetterIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dot-animation {
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+}
+
+.dot-animation.animate-dot {
+  animation: pulseDot 2s infinite;
+  opacity: 1;
+}
+
+@keyframes pulseDot {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.2);
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  }
+}
+
 .skill-title {
   opacity: 0;
-  transform: translateY(50px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .skill-title.show {
   opacity: 1;
-  transform: translateY(0);
 }
 
 .category-section {
@@ -180,7 +245,7 @@ export default {
 
 .skill-button {
   width: 180px;
-  height: 50px;
+  height: 60px;
   white-space: normal;
   padding: 0.5rem 0.75rem;
   display: flex;
@@ -197,12 +262,6 @@ export default {
   opacity: 1;
   transform: translateY(0);
 }
-
-.skill-title:not(.show) {
-  opacity: 0;
-  transform: translateY(-50px);
-}
-
 
 .skill-item:nth-child(1) {
   transition-delay: 0.1s;
@@ -262,6 +321,17 @@ export default {
 
   .skills-container {
     gap: 1.5rem;
+  }
+  
+  @keyframes fadeLetterIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px); 
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 </style>

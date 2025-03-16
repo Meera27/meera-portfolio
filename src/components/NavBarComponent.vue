@@ -1,6 +1,10 @@
 <template>
   <header class="fixed top-0 left-0 right-0 z-50">
-    <nav class="flex justify-center items-center bg-[#1F2226] text-white px-4 py-2">
+    <nav class="flex justify-between items-center bg-[#1F2226] text-white px-6 py-3">
+      <div class="logo">
+        <!-- <span class="text-2xl font-bold">m<span class="text-[#00FFFF]">.</span></span> -->
+        <img src="title.png" alt="logo" class="logo-image">
+      </div>
       <ul class="nav-links flex space-x-8">
         <li><a href="#home" :class="['nav-link', { 'active': activeSection === 'home' }]" @click="setActiveSection('home')">HOME</a></li>
         <li><a href="#about" :class="['nav-link', { 'active': activeSection === 'about' }]" @click="setActiveSection('about')">ABOUT</a></li>
@@ -48,6 +52,8 @@ export default {
   position: relative;
   padding-bottom: 2px;
   transition: color 0.3s ease-in-out;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
 }
 
 .nav-link::after {
@@ -68,5 +74,30 @@ export default {
 
 .nav-link.active {
   color: #00FFFF;
+}
+
+.logo {
+  font-family: 'Figtree', sans-serif;
+}
+.logo-image {
+  height: 35px; 
+  width: auto; 
+}
+
+@media (max-width: 640px) {
+  nav {
+    padding: 0.75rem 1rem;
+  }
+  
+  .nav-links {
+    gap:1rem;
+  }
+  
+  .nav-link {
+    font-size: 0.8rem;
+  }
+  .logo-image {
+    height: 25px; 
+  }
 }
 </style>

@@ -60,6 +60,7 @@ footer {
   min-height: 120px;
   position: relative;
   z-index: 1;
+  margin-top : -170px;
 }
 
 @media (max-width: 768px) {

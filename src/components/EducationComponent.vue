@@ -91,7 +91,6 @@ export default {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
-  /* gap: 3rem; */
   padding: 0 2rem;
   position: relative;
 }
@@ -157,7 +156,6 @@ export default {
 .timeline-dot {
   position: absolute;
   right: -4px;
-  /* top: 6px;  */
   width: 9px;
   height: 9px;
   border-radius: 50%;

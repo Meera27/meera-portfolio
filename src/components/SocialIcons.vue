@@ -70,7 +70,6 @@ export default {
   background-color: white;
 }
 
-/* Footer specific styles */
 .in-footer {
   position: static;
   margin-top: 0;
@@ -86,7 +85,6 @@ export default {
   margin: 0;
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
   .social-icons-container:not(.in-footer) {
     display: none;

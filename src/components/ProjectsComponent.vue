@@ -1,9 +1,12 @@
 <template>
   <div class="projects-section">
     <div class="projects-container">
-      <div class="w-full text-center md:text-left mb-12 project-title">
-        <h1 class="figtree-extra-light text-4xl md:text-7xl font-bold mb-4 text-center animate-title" style="color: white;" ref="projectsTitle">
-          projects<span class="text-[#00FFFF]">.</span>
+      <div class="w-full text-center md:text-left mb-12 project-title" ref="projectsTitle">
+        <h1 class="figtree-extra-light text-4xl md:text-7xl font-bold mb-4 text-center" style="color: white;">
+          <span class="letter" v-for="(letter, index) in 'projects'.split('')" :key="index" :style="{ 'animation-delay': `${index * 0.1}s` }">
+            {{ letter }}
+          </span>
+          <span class="letter text-[#00FFFF] dot-animation">.</span>
         </h1>
       </div>
       <div class="grid-container">
@@ -28,11 +31,29 @@ export default {
     const projectsTitle = ref(null)
     
     onMounted(() => {
-      setTimeout(() => {
-        if (projectsTitle.value) {
-          projectsTitle.value.classList.add('show')
-        }
-      }, 300)
+      const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show')
+            
+            setTimeout(() => {
+              const dotElement = document.querySelector('.projects-section .dot-animation')
+              if (dotElement) {
+                dotElement.classList.add('animate-dot')
+              }
+            }, 1200) 
+            
+            titleObserver.unobserve(entry.target)
+          }
+        })
+      }, { 
+        threshold: 0.2,
+        rootMargin: '-50px 0px' 
+      })
+      
+      if (projectsTitle.value) {
+        titleObserver.observe(projectsTitle.value)
+      }
     })
     
     return {
@@ -85,15 +106,63 @@ export default {
   padding: 2rem;
 }
 
-.animate-title {
+.letter {
+  display: inline-block;
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(40px);
+  animation: fadeLetterIn 0.6s forwards ease-out;
+  animation-play-state: paused;
 }
 
-.animate-title.show {
+.project-title.show .letter {
+  animation-play-state: running;
+}
+
+@keyframes fadeLetterIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dot-animation {
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+}
+
+.dot-animation.animate-dot {
+  animation: pulseDot 2s infinite;
   opacity: 1;
-  transform: translateY(0);
+}
+
+@keyframes pulseDot {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.2);
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  }
+}
+
+
+.project-title {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.project-title.show {
+  opacity: 1;
 }
 
 .grid-container {
@@ -142,6 +211,17 @@ export default {
 
   .left, .right {
     margin-top: 1rem;
+  }
+  
+  @keyframes fadeLetterIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px); 
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 </style>

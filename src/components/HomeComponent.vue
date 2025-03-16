@@ -3,8 +3,9 @@
     <div class="flex flex-col md:flex-row w-full max-w-7xl">
       <!-- Left div with text content -->
       <div class="w-full md:w-10/9 flex items-center justify-center p-4 md:p-8 mb-8 md:mb-0">
-        <div class="text-center md:text-left"><h1 class="sm:text-4xl">(01)</h1>
-          <h1 class="text-4xl md:text-8xl font-bold mb-4">about<span style="color: #00FFFF;">.</span></h1>
+        <div class="text-center md:text-left">
+          <!-- <h1 class="sm:text-4xl">(01)</h1> -->
+          <h1 class="text-4xl md:text-7xl font-bold mb-4">about<span style="color: #00FFFF;">.</span></h1>
           <p class="sm:text-2xl text-gray-300 mb-3">I'm <span style="color: #00FFFF;">Meera</span>, a Software Developer</p>
           <p class="figtree-extra-light">
             Join me as I attempt to change the world one semicolon at a time. Who knows? I might just create an app that finally explains to my mom what I actually do! 🚀
@@ -83,7 +84,6 @@ export default {
   text-decoration: none;
   color: white;
   position: relative;
-  /* padding: 2px 4px; */
 }
 .resume-link::before,
 .resume-link::after {
