@@ -3,7 +3,7 @@
     <div class="experience-container">
       <div class="left-section" :class="{ 'animate': isVisible }">
         <div class="vertical-title">
-          <h1 class="experience-title figtree-extra-light text-4xl md:text-8xl font-bold">
+          <h1 class="experience-title figtree-extra-light text-4xl md:text-7xl font-bold">
             experience<span class="text-[#00FFFF]">.</span>
           </h1>
         </div>
@@ -17,7 +17,7 @@
             <div class="timeline-dot" :class="{ 'animate': isVisible }"></div>
             <div class="timeline-content">
               <span class="year text-[#00FFFF]">{{ experience.year }}</span>
-              <h3 class="company text-xl font-bold mt-2">{{ experience.company }}</h3>
+              <h3 class="company text-xl font-bold mt-2 text-white">{{ experience.company }}</h3>
               <h4 class="role text-gray-300">{{ experience.role }}</h4>
               <div class="role-underline" :class="{ 'animate': isVisible }"></div>
               <p class="description text-gray-400 mt-2">{{ experience.description }}</p>
@@ -42,13 +42,13 @@ export default {
         year: '2024',
         company: 'Fresh Prep',
         role: 'Software Developer Intern',
-        description: 'Working on developing and maintaining web applications using Angular and Spring Boot.'
+        description: 'Working with Vue.js frontend and Ruby on Rails with PostgreSQL for the backend, ensuring maintainable software architecture.'
       },
       {
         year: '2022',
         company: 'Cognizant Technology Solutions',
         role: 'CSD Intern',
-        description: 'Developed full-stack applications using MEAN stack and implemented CI/CD pipelines.'
+        description: 'Led Java projects using Spring Boot alongside Maven for streamlined builds, delivering scalable solutions and RESTful APIs with Angular for robust UI/UX.'
       }
     ])
 

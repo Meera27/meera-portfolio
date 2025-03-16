@@ -19,7 +19,7 @@
       </div>
       
       <div class="right-section" :class="{ 'animate': isVisible }">
-        <h1 class="education-title figtree-extra-light text-4xl md:text-8xl font-bold text-white">
+        <h1 class="education-title figtree-extra-light text-4xl md:text-7xl font-bold text-white">
           education<span class="text-[#00FFFF]">.</span>
         </h1>
       </div>
@@ -40,13 +40,14 @@ export default {
         year: '2023 - 2025',
         institution: 'Concordia University',
         degree: 'M.Eng Software Engineering',
-        description: 'Currently pursuing Software Engineering studies in modern web technologies and mobile application development.'
+        description: 'Currently pursuing Masters in Software Engineering from Concordia University'
       },
       {
         year: '2018 - 2022',
         institution: 'APJ Abdul Kalam Technological University',
-        degree: 'Bachelor of Technology in Computer Science',
-        description: 'Completed undergraduate studies with focus on computer science fundamentals and software engineering.'
+        degree: 'B.Tech in Computer Science',
+        description: `Completed undergraduate studies with focus on computer science fundamentals 
+        and software engineering.`
       }
     ])
 
@@ -155,8 +156,8 @@ export default {
 
 .timeline-dot {
   position: absolute;
-  right: -3.5px;
-  /* top: 6px; Re-enabled this */
+  right: -4px;
+  /* top: 6px;  */
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -262,11 +263,11 @@ export default {
   }
 
   .timeline-container {
-    padding-right: 3rem;
+    padding-right: 2rem;
   }
 
   .timeline-line {
-    right: 48px;
+    right: 32px;
     height: calc(100% - 1.5rem);
   }
 
@@ -303,8 +304,5 @@ export default {
     width: calc(100% - 4rem);
   }
 
-  .education-title {
-    font-size: 2.5rem;
-  }
 }
 </style>
